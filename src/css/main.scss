@@ -2,8 +2,8 @@
 @import "fonts";
 @import "header";
 @import "share";
-$highlight: #e21e25;
-$darkGrey: #333333;
+$highlight: #69d1ca;
+$darkGrey: #808080;
 
 // Uncomment for embeds
 //@import "embed";
@@ -15,6 +15,7 @@ $darkGrey: #333333;
 .interactive-atom {
     margin: 0 !important;
     background-color: #dddddd;
+    color:#333;
 }
 
 .main {
@@ -29,6 +30,26 @@ $darkGrey: #333333;
     overflow: hidden;
     background-color: #e6e6e6;
     max-width:1300px;
+}
+
+
+.mainTop {
+  @each $bp in (tablet, desktop, wide) {
+      @include mq($bp) {
+          max-width: map-get($mq-breakpoints, $bp);
+      }
+  }
+  margin: 0 auto;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  background-color: #222222;
+  max-width:1300px;
+}
+
+
+.highlight-text {
+    color:#f1f1f1;
 }
 
 .leftCol {
@@ -55,6 +76,15 @@ $darkGrey: #333333;
   }
 }
 
+.strongHead {
+  font-weight:800;
+  color:#222;
+}
+
+// figure.element {
+//   height:100%;
+// }
+
 .highlight-text {
-  color:$highlight;
+  color:white;
 }

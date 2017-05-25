@@ -1,0 +1,15 @@
+{
+"name":"Industry drivers",
+"value":235,
+"children": [
+{"name":"Indigenous Peoples", "value":74},
+{"name":"Land", "value":43},
+{"name":"Mining & Extractives", "value":37},
+{"name":"Logging", "value":28},
+{"name":"Agribusiness", "value":23},
+{"name":"Poaching", "value":18},
+{"name":"Water & Dams", "value":74},
+{"name":"Indigenous Peoples", "value":8},
+{"name":"Other", "value":4}
+]
+}

@@ -1,24 +1,37 @@
 <div class="main-interactive">
   <div class="main">
-
     {{#module}}
       {{#mostRecent}}
-        <div class="mainCol">
+        <div class="mainCol"  style="padding-top:20px;">
           <p class="">{{{copy}}}</p>
-          <h2>{{{title}}}</h2>
-          <div class="embed-graphic {{type}}">
+          <h2 class="strongHead">{{{title}}}</h2>
+        </div>
+        <div class="embed-graphic">
             <!-- create template for list of people -->
-
-          </div>
         </div>
       {{/mostRecent}}
 
       {{^mostRecent}}
+        {{#aiEmbed}}
         <div class="mainCol">
-          <h2>{{{title}}}</h2>
+          <h2 class="strongHead">{{{title}}}</h2>
           <p class="">{{{copy}}}</p>
-          <div class="embed-graphic {{type}}"></div>
-      </div>
+        </div>
+        <div class="embed-graphic">
+          <figure class="element element-interactive interactive" data-interactive="https://interactive.guim.co.uk/embed/iframe-wrapper/0.1/boot.js" data-canonical-url="{{embedURL}}" data-alt="New graphic">
+<a href="{{embedURL}}" data-link-name="in body link" class="u-underline"></a>
+          </figure>
+        </div>
+        {{/aiEmbed}}
+
+        {{^aiEmbed}}
+        <div class="mainCol">
+          <h2 class="strongHead">{{{title}}}</h2>
+          <p class="">{{{copy}}}</p>
+        </div>
+        <div class="embed-graphic">
+        </div>
+        {{/aiEmbed}}
       {{/mostRecent}}
     {{/module}}
     <div class="mainCol">

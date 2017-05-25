@@ -1,8 +1,9 @@
 @import "mq";
 @import "fonts";
 @import "share";
-$highlight: #e21e25;
-$darkGrey: #333333;
+$highlight: #69d1ca;
+$darkGrey: #808080;
+
 
 .header-share-container{
     padding-top:5px;
@@ -14,15 +15,20 @@ $darkGrey: #333333;
 
 #headerCol {
     margin-top:30px;
-    border-bottom:1px solid #CCC;
+    // border-bottom:1px solid #CCC;
     position:relative;
     margin-bottom:15px;
+}
+
+.count-header {
+    background-color: #222;
+    color: #222222;
 }
 
 .int-byline {
   @include fs-textSans(3);
   font-weight:900;
-  color:#000;
+  color:$darkGrey;
   font-size: 14px;
   max-width:620px;
   display:block;
@@ -40,10 +46,7 @@ $darkGrey: #333333;
   padding-top:15px;
 }
 
-.count-header {
-  // width:100%;
-  // background-color: #eaeaea;
-}
+
 $animationBaseCount: 0.5;
 
 .count-header__tag {
@@ -58,7 +61,7 @@ $animationBaseCount: 0.5;
   @include mq(desktop) {
       @include fs-header(4);
   }
-  color: #000000;
+  color: #666666;
   padding-top: 8px;
   position: relative;
   z-index: 999;
@@ -84,7 +87,7 @@ $animationBaseCount: 0.5;
   max-width:620px;
   font-size: 130px;
   line-height:120px;
-  color:$highlight;
+  color:white;
   display:block;
   float:left;
 }
