@@ -2,17 +2,23 @@
   <div class="main">
     {{#module}}
       {{#mostRecent}}
-        <div class="mainCol"  style="padding-top:20px;">
-          <p class="">{{{copy}}}</p>
-          <h2 class="strongHead">{{{title}}}</h2>
-        </div>
-        <div class="embed-graphic">
-            <!-- create template for list of people -->
-        </div>
+      <div class="mainCol"  style="padding-top:20px;">
+        <p class="">{{{copy}}}</p>
+        <h2 class="strongHead">{{{title}}}</h2>
+      </div>
+      <div id="featured-victim">
+      </div>
       {{/mostRecent}}
-
-      {{^mostRecent}}
-        {{#aiEmbed}}
+      {{#allVictims}}
+      <div id="allVictimsPanel">
+        <div class="mainCol">
+            <h2 class="strongHead">{{{title}}}</h2>
+        </div>
+        <div id="all-victims">
+        </div>
+      </div>
+      {{/allVictims}}
+      {{#aiEmbed}}
         <div class="mainCol">
           <h2 class="strongHead">{{{title}}}</h2>
           <p class="">{{{copy}}}</p>
@@ -23,16 +29,14 @@
           </figure>
         </div>
         {{/aiEmbed}}
-
-        {{^aiEmbed}}
+        {{#chart}}
         <div class="mainCol">
           <h2 class="strongHead">{{{title}}}</h2>
           <p class="">{{{copy}}}</p>
         </div>
-        <div class="embed-graphic">
+        <div class="embed-graphic {{type}}">
         </div>
-        {{/aiEmbed}}
-      {{/mostRecent}}
+        {{/chart}}
     {{/module}}
     <div class="mainCol">
       <p class="int-sources">{{{sources}}}</p>

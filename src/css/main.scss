@@ -32,7 +32,6 @@ $darkGrey: #808080;
     max-width:1300px;
 }
 
-
 .mainTop {
   @each $bp in (tablet, desktop, wide) {
       @include mq($bp) {
@@ -64,7 +63,7 @@ $darkGrey: #808080;
 
 .mainCol {
   max-width:620px;
-  float:left;
+  // float:left;
   display:block;
   position:relative;
 
@@ -78,12 +77,84 @@ $darkGrey: #808080;
 
 .strongHead {
   font-weight:800;
+  font-size:28px;
+  line-height:1.5;
   color:#222;
+  display:block;
+  padding:10px 0;
 }
 
-// figure.element {
-//   height:100%;
-// }
+.featured-victim-inline {
+  display:block;
+  padding:20px;
+
+}
+
+.featured-victim-name, .victim-inline-country {
+  font-family: $f-sans-serif-text;
+  font-size: 14px;
+  line-height: 1.5;
+  color:#333;
+  padding-bottom:5px;
+  text-transform: uppercase;
+  font-size:13px;
+}
+
+.featured-victim-description {
+  font-family: $f-serif-headline;
+  font-size: 28px;
+  line-height: 34px;
+  color:#333;
+  font-weight:100;
+}
+
+.featured-victim-description:first-letter{
+  text-transform: lowercase;
+}
+
+.featured-victim-square {
+	width: 7px;
+	height: 7px;
+	border: 1px solid #bbb;
+  position:absolute;
+  left:-15px;
+  top:4px;
+}
+
+.victim-inline-separator {
+  width: 9px;
+  height: 9px;
+  background: $highlight;
+  display: inline-block;
+  margin:0 4px 1px 5px;;
+}
+
+#allVictimsPanel {
+  padding:20px 20px;
+  margin:20px 0;
+  // width:100%;
+  display:block;
+  position:relative;
+  // background-color: transparent;
+  background-image: url(../assets/img/dots.png);
+  // background-size:300px 450px;
+  background-repeat:repeat-y;
+  background-size:cover;
+  background-position: center;
+}
+
+.victim-inline, .victim-inline-name, .victim-inline-country, .victim-inline-description, .victim-inline-story, .victim-inline-story, .victim-inline-button {
+  display:inline;
+  position:relative;
+}
+
+.victim-inline-name {
+  font-family: $f-serif-headline;
+  font-size: 22px;
+  line-height: 32px;
+  color:#333;
+  font-weight:100;
+}
 
 .highlight-text {
   color:white;

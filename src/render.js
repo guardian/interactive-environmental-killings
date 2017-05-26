@@ -1,8 +1,10 @@
 import headerTemplate from './src/templates/header.html!text'
 import moduleTemplate from './src/templates/module.html!text'
+import featuredTemplate from './src/templates/featured.html!text'
 import rp from 'request-promise'
 import Mustache from 'mustache'
-import fs from 'fs';
+import fs from 'fs'
+import xr from 'xr'
 
 export async function render() {
     let data = cleanData(await rp({
@@ -10,13 +12,12 @@ export async function render() {
         json: true
     }));
 
-let count = Number(data.header.count);
+// let count = Number(data.header.count);
+// var count = document.querySelector(".count-header__count__number");
 
-
-
-data.header.counterNumbers = [count - 3, count - 2, count - 1, count].map((num) => {
-        return (num < 10) ? "0" + num : num;
-    });
+// data.header.counterNumbers = [count - 3, count - 2, count - 1, count].map((num) => {
+//         return (num < 10) ? "0" + num : num;
+//     });
 
 let headerHTML = Mustache.render(headerTemplate, data.header);
 let moduleHTML = Mustache.render(moduleTemplate, {
@@ -31,6 +32,7 @@ let moduleHTML = Mustache.render(moduleTemplate, {
 
 return `${headerHTML}${moduleHTML}`;
 }
+
 
 function cleanData(data) {
     data.module.map((unit) => {
