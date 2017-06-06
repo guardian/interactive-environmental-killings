@@ -3,7 +3,7 @@
     {{#module}}
       {{#mostRecent}}
       <div class="mainCol"  style="padding-top:20px;">
-        <p class="">{{{copy}}}</p>
+        <p class="module-copy">{{{copy}}}</p>
         <h2 class="strongHead">{{{title}}}</h2>
       </div>
       <div id="featured-victim">
@@ -21,7 +21,7 @@
       {{#aiEmbed}}
         <div class="mainCol">
           <h2 class="strongHead">{{{title}}}</h2>
-          <p class="">{{{copy}}}</p>
+          <p class="module-copy">{{{copy}}}</p>
         </div>
         <div class="embed-graphic">
           <figure class="element element-interactive interactive" data-interactive="https://interactive.guim.co.uk/embed/iframe-wrapper/0.1/boot.js" data-canonical-url="{{embedURL}}" data-alt="New graphic">
@@ -32,9 +32,9 @@
         {{#chart}}
         <div class="mainCol">
           <h2 class="strongHead">{{{title}}}</h2>
-          <p class="">{{{copy}}}</p>
+          <p class="module-copy">{{{copy}}}</p>
         </div>
-        <div class="embed-graphic {{type}}">
+        <div class="{{wide}}" id="{{type}}">
         </div>
         {{/chart}}
     {{/module}}

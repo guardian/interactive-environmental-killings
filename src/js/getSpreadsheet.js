@@ -19,10 +19,11 @@ export function getSpreadsheetData() {
                 return a.date - b.date;
             });
 
-            //return most recent
-
-
-
+            //return monthly cumulative data
+            // d.data.sheets.KillingsRecentYears = d.data.sheets.KillingsRecentYears.map(function(killingNumbers, i){
+            //   killingNumbers.hasNumber = killingNumbers.cumulative2017 !==""
+            //   return killingNumbers;
+            // });
             //return all data
             resolve(d.data.sheets);
         });

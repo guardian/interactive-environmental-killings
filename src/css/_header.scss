@@ -13,7 +13,7 @@ $darkGrey: #808080;
     float:left;
 	}
 
-#headerCol {
+#headerCol, #featured{
     margin-top:30px;
     // border-bottom:1px solid #CCC;
     position:relative;
@@ -108,8 +108,8 @@ $animationBaseCount: 0.5;
   float:left;
   margin-top:15px;
   margin-bottom:20px;
-  font-size:22px;
-  line-height:32px;
+  font-size:18px;
+  line-height:28px;
   font-weight:200;
   color:$darkGrey;
   max-width:620px;
