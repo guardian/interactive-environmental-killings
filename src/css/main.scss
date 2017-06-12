@@ -300,3 +300,29 @@ margin-left:-20px;
     stroke:#3faa9f;
     stroke-width:3px;
   }
+
+  .tick text {
+    font-family: $f-sans-serif-text;
+    font-size: 11px;
+    fill:#999;
+  }
+
+  .tick line {
+    stroke:#ccc;
+    stroke-width:1px;
+  }
+
+  .grid .domain {
+    stroke-width:0px;
+    display:none;
+  }
+
+  .step-axisY .domain {
+    stroke:#ccc;
+    stroke-width:0px;
+  }
+
+  .step-axisX .domain {
+    stroke:#ccc;
+    stroke-width:1px;
+  }

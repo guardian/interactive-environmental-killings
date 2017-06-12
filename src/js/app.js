@@ -83,6 +83,7 @@ else
   var stepHeight = stepWidth/2 - stepMarginTop - stepMarginBottom;
   var maxOffset = 250;
 
+
 // set the ranges
   var xScale = scalePoint().domain(months).range([stepMarginLeft, stepWidth]);
   var yScale = scaleLinear().domain([0,maxOffset]).range([stepHeight, stepMarginTop]);
@@ -128,6 +129,8 @@ else
       // return d.cumulative2017 = +d.cumulative2017;
     })
 
+
+
 //adds the killingsline
     svg.append("path")
         .data([killingsPast])
@@ -146,14 +149,29 @@ else
 
 //adds the x axis
     svg.append("g")
-    .attr("class", "step-axis")
+    .attr("class", "step-axisX")
     .attr("transform", "translate(0," + stepHeight + ")")
-    .call(axisBottom(xScale));
+    .call(axisBottom(xScale)
+    .ticks(12));
 
 //adds the y axis
     svg.append("g")
+    .attr("class", "step-axisY")
     .attr("transform", "translate(10,10)")
-    .call(axisLeft(yScale));
+    .call(axisLeft(yScale)
+    .ticks(5));
+
+//adds the y gridlines
+    svg.append("g")
+      .attr("class", "grid")
+      .attr("transform", "translate(10,10)")
+      .call(axisLeft(yScale)
+            .ticks(5)
+            .tickSize(-stepWidth)
+            .tickFormat("")
+        )
+
+
 
 
 //adds dots at the end of the linesvg.selectAll(".dot")
