@@ -270,7 +270,7 @@ margin-left:-20px;
 #g-step {
   overflow:visible;
   width:100%;
-  max-width:600px;
+  max-width:620px;
   position:relative;
   display:block;
   margin-top:50px;
@@ -285,7 +285,9 @@ margin-left:-20px;
   }
 
   .stepchart {
-    overflow:visible;
+    overflow:visible !important;
+    position:relative;
+    display:block;
   }
 
   .line2015 {
@@ -331,4 +333,12 @@ margin-left:-20px;
   .step-axisX .domain {
     stroke:#ccc;
     stroke-width:1px;
+  }
+
+  .stepLabel {
+    font-family: $f-serif-headline;
+    font-size:18px;
+    line-height:20px;
+    font-weight:900;
+    display:inline;
   }

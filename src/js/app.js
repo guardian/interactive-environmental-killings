@@ -18,7 +18,7 @@ import {
 } from 'd3-selection'
 import {
   line,
-  curveStepAfter
+  curveStepBefore
 } from 'd3-shape'
 import {
   easeLinear
@@ -152,12 +152,12 @@ getSpreadsheetData().then(function(data) {
 
   // set the dimensions of the canvas
   var stepMarginLeft = 10;
-  var stepMarginRight = 10;
+  var stepMarginRight = 50;
   var stepMarginTop = 10;
-  var stepMarginBottom = 10;
+  var stepMarginBottom = 50;
   var stepWidth = document.querySelector('#g-step').offsetWidth - stepMarginLeft - stepMarginRight - 50;
   var stepTotalWidth = document.querySelector('#g-step').offsetWidth;
-  var stepHeight = stepWidth / 2 - stepMarginTop - stepMarginBottom + 50;
+  var stepHeight = stepWidth/1.4 - stepMarginTop - stepMarginBottom + 50;
   var maxOffset = 250;
 
 
@@ -173,7 +173,7 @@ getSpreadsheetData().then(function(data) {
     .y(function(d) {
       return yScale(d.victims2015);
     })
-    .curve(curveStepAfter);
+    .curve(curveStepBefore);
 
   var line2016 = line()
     .x(function(d) {
@@ -182,7 +182,7 @@ getSpreadsheetData().then(function(data) {
     .y(function(d) {
       return yScale(d.victims2016);
     })
-    .curve(curveStepAfter);
+    .curve(curveStepBefore);
 
   var line2017 = line()
     .x(function(d) {
@@ -191,7 +191,7 @@ getSpreadsheetData().then(function(data) {
     .y(function(d) {
       return yScale(d.cumulative2017);
     })
-    .curve(curveStepAfter);
+    .curve(curveStepBefore);
 
   var targetEl = document.querySelector("#g-step");
   var svg = select(targetEl).append("svg")
@@ -218,6 +218,7 @@ getSpreadsheetData().then(function(data) {
     // return d.cumulative2016 = +d.cumulative2016;
     // return d.cumulative2017 = +d.cumulative2017;
   })
+
 
   //adds the x axis
   svg.append("g")
@@ -259,12 +260,32 @@ getSpreadsheetData().then(function(data) {
     .attr("class", "line2017")
     .attr("d", line2017);
 
+console.log(line2016);
+
   svg.append("text")
-      .attr("transform", "translate(" + (stepTotalWidth-3) + ",100)")
+      .attr ("x", (stepWidth+5))
+      // .attr ("y", yScale(line2016[11]))
       .attr("class","stepLabel")
-  		.attr("text-anchor", "end")
+  		.attr("text-anchor", "start")
   		.style("fill", "#333333")
-  		.text("Data");
+  		.text(killingsPast[11].victims2016 + " murdered in 2016");
+
+      svg.append("text")
+          .attr ("x", (stepWidth+5))
+          .attr ("y", 100)
+          .attr("class","stepLabel")
+      		.attr("text-anchor", "start")
+      		.style("fill", "#bdbdbd")
+      		.text(killingsPast[11].victims2015 + " murdered in 2015");
+
+          svg.append("text")
+              .attr ("x", (stepWidth+5))
+              .attr ("y", 150)
+              .attr("class","stepLabel")
+          		.attr("text-anchor", "start")
+          		.style("fill", "##3faa9f")
+          		.text(killingsDataByYear[killingsDataByYear.length].cumulative2017 + " murdered in 2015");
+
 
 
   //adds dots at the end of the linesvg.selectAll(".dot")
