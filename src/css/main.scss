@@ -273,6 +273,8 @@ margin-left:-20px;
   max-width:600px;
   position:relative;
   display:block;
+  margin-top:50px;
+  margin-bottom:50px;
   svg {
     shape-rendering: auto;
       }
@@ -280,6 +282,10 @@ margin-left:-20px;
 
   .line {
     fill:none;
+  }
+
+  .stepchart {
+    overflow:visible;
   }
 
   .line2015 {
