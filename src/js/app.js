@@ -346,7 +346,8 @@ let drawMap = (data) => {
             .attr("width", width)
             .attr("height", height);
 
-        var circleScale = scaleSqrt().domain([0, 50]).range([0, 40])
+        var circleScale = scaleSqrt().domain([0, 50]).range([0, (width > 740) ? 40 : 30])
+
 
         svg.selectAll(".country")
             .data(countries)
@@ -383,19 +384,55 @@ let drawMap = (data) => {
             .style("stroke-width", "2px")
 
         let keyCircles = svg.append("g").selectAll("circle")
-            .data([50, 10])
+            .data([40, 10])
             .enter().append("circle")
             .attr("class", "circle")
             .attr("cx", (d, i) => {
-                return i * 100;
+                return width - ((width > 740) ? 60 : 50);
             })
             .attr("cy", (d, i) => {
-                return 100;
+                if(i === 0) {
+                  return (width > 740) ? 54 : 42;
+                } else {
+                  return (width > 740) ? 70 : 54;
+                }
             })
             .attr("r", (d) => circleScale(d))
             .style("fill", "none")
             .style("stroke", "#3faa9f")
             .style("stroke-width", "2px")
+
+        let keyLabels = svg.append("g").selectAll("text")
+            .data([40, 10])
+            .enter().append("text")
+            .attr("class", "map-label")
+            .attr("x", (d, i) => {
+                return width - ((width > 740) ? 60 : 50);
+            })
+            .attr("y", (d, i) => {
+                if(i === 0) {
+                  return (width > 740) ? 50 : 42;
+                } else {
+                  return (width > 740) ? 72 : 56;
+                }
+            })
+            .text((d) => d)
+            .style("text-anchor", "middle")
+            .attr("dy", (d) => {
+              if(d === 40) {
+                return -8;
+              } else {
+                return 4;
+              }
+            });
+
+        svg.append("text")
+          .attr("x", width - ((width > 740) ? 60 : 50)) 
+          .attr("y", (width > 740) ? 12 : 12)
+          .classed("map-label", true)
+          .text("Activist deaths")
+          .style("text-anchor", "middle")
+          .style("font-weight", "bold");
 
         let topFive = mapData.sort((a, b) => b["2015--count-per-country"]-a["2015--count-per-country"]).slice(0, 5)
 
@@ -418,14 +455,22 @@ let drawMap = (data) => {
 
         // add years
 
-        select(mapEl).append("div")
+        let buttons = select(mapEl).append("div")
           .classed("map-years", true)
           .selectAll("span")
           .data([2015, 2016, "All years"])
           .enter()
           .append("span")
           .html((d) => d)
-          .on("click", (d) => {
+          .classed("active", (d) => {
+            return d === "All years";
+          });
+
+          buttons.on("click", function(d) {
+            buttons.classed("active", false);
+
+            select(this).classed("active", true);
+
             animateCircles(circles, d);
           });
 
