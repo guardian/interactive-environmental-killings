@@ -270,9 +270,11 @@ margin-left:-20px;
 #g-step {
   overflow:visible;
   width:100%;
-  max-width:600px;
+  max-width:620px;
   position:relative;
   display:block;
+  margin-top:50px;
+  margin-bottom:50px;
   svg {
     shape-rendering: auto;
       }
@@ -280,6 +282,12 @@ margin-left:-20px;
 
   .line {
     fill:none;
+  }
+
+  .stepchart {
+    overflow:visible !important;
+    position:relative;
+    display:block;
   }
 
   .line2015 {
@@ -300,3 +308,76 @@ margin-left:-20px;
     stroke:#3faa9f;
     stroke-width:3px;
   }
+
+  .tick text {
+    font-family: $f-sans-serif-text;
+    font-size: 11px;
+    fill:#999;
+  }
+
+  .tick line {
+    stroke:#ccc;
+    stroke-width:1px;
+  }
+
+  .grid .domain {
+    stroke-width:0px;
+    display:none;
+  }
+
+  .step-axisY .domain {
+    stroke:#ccc;
+    stroke-width:0px;
+  }
+
+  .step-axisX .domain {
+    stroke:#ccc;
+    stroke-width:1px;
+  }
+
+  .stepLabel {
+    font-family: $f-serif-headline;
+    font-size:18px;
+    line-height:20px;
+    font-weight:900;
+    display:inline;
+  }
+
+//map
+
+#g-map {
+  position: relative;
+}
+
+.map-label {
+  @include fs-textSans(2);
+}
+
+.map-years {
+  display: block;
+  position: absolute;
+  top: 24px;
+
+  @include mq(leftCol) {
+    left: 160px;
+  }
+
+  @include mq(wide) {
+    left: 240px;
+  }
+
+  span {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-right: 5px;
+    @include fs-textSans(4);
+    font-size: 18px;
+    color: #767676;
+    background-color: #f6f6f6;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

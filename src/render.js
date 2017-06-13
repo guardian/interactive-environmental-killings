@@ -50,11 +50,16 @@ function cleanData(data) {
 }
 
 async function cleanMapData(data) {
-    for (let country of data) {
-        let locationData = await rp({uri: "https://maps.googleapis.com/maps/api/geocode/json?address=" + country.country + "&key=AIzaSyAThvvv9XgNyie_NegLeNcd8FeGbf985d8", json: true});
+    let savedLocations = JSON.parse(fs.readFileSync("./src/assets/data/saved-locations.json", "utf8"));
 
-        country.location = locationData.results[0].geometry.location;
+    for (let country of data) {
+        let locationData = (savedLocations.find((d) => d.country = country.country))
+            ? savedLocations.find((d) => d.country = country.country).location
+            : (await rp({uri: "https://maps.googleapis.com/maps/api/geocode/json?address=" + country.country + "&key=AIzaSyB8xlBqUbeOjiVqDrp9IGXdHz1byqRF-d8", json: true})).results[0].geometry.location;
+
+        country.location = locationData;
     }
 
+    // fs.writeFileSync("./src/assets/data/saved-locations.json", JSON.stringify(data));
     return data;
 }
