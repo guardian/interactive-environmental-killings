@@ -5,7 +5,6 @@ import rp from 'request-promise'
 import Mustache from 'mustache'
 import fs from 'fs'
 import xr from 'xr'
-var throttle = require('promise-ratelimit')(2000);
 
 export async function render() {
     let data = cleanData(await rp({
@@ -14,7 +13,7 @@ export async function render() {
     }));
 
     let mapData = (await rp({uri: "https://interactive.guim.co.uk/docsdata-test/1r0XEHvbz08gz1_762VnDjayXm7n8ICTI_Ja8fwenric.json", json: true})).sheets.KillingsMap;
-    
+
     let cleanedMapData = await cleanMapData(mapData);
     // let count = Number(data.header.count);
     // var count = document.querySelector(".count-header__count__number");
