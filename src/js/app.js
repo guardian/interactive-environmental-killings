@@ -159,7 +159,7 @@ getSpreadsheetData().then(function(data) {
   var stepMarginBottom = 50;
   var stepWidth = document.querySelector('#g-step').offsetWidth - stepMarginLeft - stepMarginRight - 50;
   var stepTotalWidth = document.querySelector('#g-step').offsetWidth;
-  var stepHeight = stepWidth/1.4 - stepMarginTop - stepMarginBottom + 50;
+  var stepHeight = stepWidth / 1.4 - stepMarginTop - stepMarginBottom + 50;
   var maxOffset = 250;
 
 
@@ -201,7 +201,7 @@ getSpreadsheetData().then(function(data) {
     .attr("class", "stepchart")
     .attr('height', stepHeight)
     .append("g")
-    .attr("transform", "translate(" + stepMarginLeft * 1.5 + ",-20)");
+    .attr("transform", "translate(" + stepMarginLeft + ",-20)");
   // .attr("transform", "translate(" + stepMarginLeft*1.5 + "," + "-" + stepMarginTop*1.5 + ")");
   //get the data
   //format the data
@@ -230,14 +230,15 @@ getSpreadsheetData().then(function(data) {
   //adds the y axis
   svg.append("g")
     .attr("class", "step-axisY")
-    .attr("transform", "translate(20,0)")
+    .attr("text-anchor", "end")
+    .attr("transform", "translate(20,-10)")
     .call(axisLeft(yScale)
       .ticks(5));
 
   //adds the y gridlines
   svg.append("g")
     .attr("class", "grid")
-    .attr("transform", "translate(20,0)")
+    .attr("transform", "translate(-10,0)")
     .call(axisLeft(yScale)
       .ticks(5)
       .tickSize(-stepWidth)
@@ -260,59 +261,147 @@ getSpreadsheetData().then(function(data) {
     .attr("class", "line2017")
     .attr("d", line2017);
 
-  svg.append("text")
-      .attr("transform", function(line2016) {
-          return "translate(" + (stepWidth+10) + "," + (yScale(killings2016[killings2016.length-1]) - 2) + ")"
-})
-      .attr("class","stepLabel")
-  		.attr("text-anchor", "start")
-  		.style("fill", "#333333")
-  		.text(killingsPast[11].victims2016 + " murdered in 2016");
+//add labels
 
-      svg.append("text")
-          .attr("transform", function(line2015) {
-              return "translate(" + (stepWidth+10) + "," + (yScale(killings2015[killings2015.length-1]) + 10) + ")"
+  var translateWidth = document.getElementsByClassName("line2017")[0].getBBox().width;
+
+  //   svg.append("text")
+  //       .attr("transform", function(line2017) {
+  //           return "translate(" + (translateWidth+20) + "," + (yScale(killingsDataByYear[killingsDataByYear.length-1].cumulative2017 )) + ")"
+  // })
+  //       .attr("class","stepLabel")
+  //   		.attr("text-anchor", "start")
+  //   		.style("fill", "#3faa9f")
+  //   		.text(killingsDataByYear[killingsDataByYear.length-1].cumulative2017 + " murdered in 2017");
+  var labels2017 = svg.append("g")
+    .attr("transform", function(line2017) {
+      return "translate(" + (translateWidth) + "," + (yScale(killingsDataByYear[killingsDataByYear.length - 1].cumulative2017) - 40) + ")"
+    });
+
+    labels2017.append("rect")
+      .attr("x", 0)
+      .attr("y", -20)
+      .attr("class", "bgLabel")
+      .attr("width",70)
+      .attr("height",70)
+      .style("fill", "#e6e6e6")
+
+  labels2017.append("text")
+    .attr("x", 5)
+    .attr("y", 0)
+    .attr("class", "stepNumber")
+    .attr("text-anchor", "start")
+    .style("fill", "#3faa9f")
+    .text(killingsDataByYear[killingsDataByYear.length - 1].cumulative2017);
+
+  labels2017.append("text")
+    .attr("x", 5)
+    .attr("y", 16)
+    .attr("class", "stepLabel")
+    .attr("text-anchor", "start")
+    .style("fill", "#3faa9f")
+    .text("murdered");
+
+  labels2017.append("text")
+    .attr("x", 5)
+    .attr("y", 32)
+    .attr("class", "stepLabel")
+    .attr("text-anchor", "start")
+    .style("fill", "#3faa9f")
+    .text("in 2017");
+
+    svg.append("rect")
+      .attr("class", "lineEnd")
+      .attr("x", (translateWidth + 7))
+      .attr("y", function(line2017) {
+        return yScale(killingsDataByYear[killingsDataByYear.length - 1].cumulative2017 + 4)
+      })
+      .attr("width", 8)
+      .attr("height", 8)
+      .style("fill", "#3faa9f");
+
+  //2016
+  var labels2016 = svg.append("g")
+  .attr("transform", function(line2016) {
+    return "translate(" + (stepWidth + 10) + "," + (yScale(killings2016[killings2016.length - 1]) - 30) + ")"
+  })
+
+
+  labels2016.append("text")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("class", "stepNumber")
+    .attr("text-anchor", "start")
+    .style("fill", "#333")
+    .text(killings2016[killings2016.length - 1]);
+
+  labels2016.append("text")
+    .attr("x", 0)
+    .attr("y", 16)
+    .attr("class", "stepLabel")
+    .attr("text-anchor", "start")
+    .style("fill", "#333")
+    .text("murdered");
+
+  labels2016.append("text")
+    .attr("x", 0)
+    .attr("y", 32)
+    .attr("class", "stepLabel")
+    .attr("text-anchor", "start")
+    .style("fill", "#333")
+    .text("in 2016");
+
+
+  svg.append("rect")
+    .attr("class", "lineEnd")
+    .attr("x", (stepWidth - 4))
+    .attr("y", function(line2015) {
+      return yScale(killings2015[killings2015.length - 1])
     })
-          .attr("class","stepLabel")
-      		.attr("text-anchor", "start")
-      		.style("fill", "#bdbdbd")
-      		.text(killingsPast[11].victims2015 + " murdered in 2015");
+    .attr("width", 7)
+    .attr("height", 7)
+    .style("fill", "#bdbdbd");
 
-var translateWidth = document.getElementsByClassName("line2017")[0].getBBox().width;
+  svg.append("rect")
+    .attr("class", "lineEnd")
+    .attr("x", (stepWidth - 4))
+    .attr("y", function(line2016) {
+      return yScale(killings2016[killings2016.length - 1])
+    })
+    .attr("width", 7)
+    .attr("height", 7)
+    .style("fill", "#333");
 
-          svg.append("text")
-              .attr("transform", function(line2017) {
-                  return "translate(" + (translateWidth+20) + "," + (yScale(killingsDataByYear[killingsDataByYear.length-1].cumulative2017 )) + ")"
-        })
-              .attr("class","stepLabel")
-          		.attr("text-anchor", "start")
-          		.style("fill", "#3faa9f")
-          		.text(killingsDataByYear[killingsDataByYear.length-1].cumulative2017 + " murdered in 2017");
+    //2015
+    var labels2015 = svg.append("g")
+    .attr("transform", function(line2015) {
+      return "translate(" + (stepWidth + 10) + "," + (yScale(killings2015[killings2015.length - 1]) + 10) + ")"
+    })
 
-          svg.append("rect")
-            .attr("class","lineEnd")
-            .attr("x", (stepWidth-4))
-            .attr("y", function(line2015){return yScale(killings2015[killings2015.length-1])})
-            .attr("width", 7)
-            .attr("height", 7)
-            .style("fill","#bdbdbd");
 
-            svg.append("rect")
-              .attr("class","lineEnd")
-              .attr("x", (stepWidth-4))
-              .attr("y", function(line2016){return yScale(killings2016[killings2016.length-1])})
-              .attr("width", 7)
-              .attr("height", 7)
-              .style("fill","#333");
+    labels2015.append("text")
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("class", "stepNumber")
+      .attr("text-anchor", "start")
+      .style("fill", "#bdbdbd")
+      .text(killings2015[killings2015.length - 1]);
 
-            svg.append("rect")
-              .attr("class","lineEnd")
-              .attr("x", (translateWidth+7))
-              .attr("y", function(line2017){return yScale(killingsDataByYear[killingsDataByYear.length-1].cumulative2017 + 4)})
-              .attr("width", 8)
-              .attr("height", 8)
-              .style("fill","#3faa9f");
+    labels2015.append("text")
+      .attr("x", 0)
+      .attr("y", 16)
+      .attr("class", "stepLabel")
+      .attr("text-anchor", "start")
+      .style("fill", "#bdbdbd")
+      .text("murdered");
 
+    labels2015.append("text")
+      .attr("x", 0)
+      .attr("y", 32)
+      .attr("class", "stepLabel")
+      .attr("text-anchor", "start")
+      .style("fill", "#bdbdbd")
+      .text("in 2015");
 
 
 })

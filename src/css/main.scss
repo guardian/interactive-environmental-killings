@@ -74,18 +74,58 @@ $darkGrey: #808080;
 	}
 }
 
+.leftColPhoto {
+  @include mq($from:wide) {
+    width:220px;
+    position:absolute;
+    top:10px
+  }
+
+
+  @include mq($from:desktop, $until: leftCol){
+		width:140px;
+    position:absolute;
+	}
+	@include mq($from:leftCol){
+		width:220px;
+    position:absolute;
+	}
+
+  @include mq($from:tablet, $until: desktop){
+    float:right;
+    right:250px;
+    position:absolute;
+	}
+
+  @include mq($from:mobile, $until:tablet){
+    position:relative;
+    display:block;
+    margin-bottom:10px;
+
+  }
+
+}
+
 .mainCol {
   max-width:620px;
   // float:left;
   display:block;
   position:relative;
+  padding:0 10px;
+  margin-top:10px;
 
   @include mq(leftCol) {
       margin-left: 160px;
   }
+
   @include mq(wide) {
       margin-left: 240px;
   }
+
+  @include mq(desktop, tablet) {
+      margin-left:20px;
+  }
+
 }
 
 .module-copy {
@@ -98,11 +138,14 @@ $darkGrey: #808080;
   font-family:$f-serif-headline;
   font-weight:900;
   font-size:28px;
-  line-height:1.5;
+  line-height:1.2;
   color:#222;
   display:block;
   padding:15px 0;
   margin-bottom:-10px;
+
+  @include mq($until:desktop) {
+  }
 }
 
 #featured-victim {
@@ -122,6 +165,10 @@ $darkGrey: #808080;
   padding-bottom:5px;
   text-transform: uppercase;
   font-size:13px;
+
+  @include mq($until:leftCol){
+    padding-left:3px;
+  }
 }
 
 .featured-victim-description {
@@ -141,24 +188,47 @@ $darkGrey: #808080;
 	height: 7px;
 	border: 1px solid #bbb;
   position:absolute;
-  left:-15px;
+  left:-5px;
   top:4px;
+
+  @include mq($until:leftCol){
+    left:0px;
+  }
 }
 
 .featured-victim-photo-line {
   width: 15px;
   height: 1px;
   background-color: #ccc;
-  position: absolute;
-  top:8px;
-  right:-5px;
+
+  @include mq($from:wide){
+    position: absolute;
+    top:8px;
+    right:-15px;
+  }
+
+  @include mq($from:desktop, $until:wide){
+  display:none;
+  }
+
+  @include mq($from:tablet, $until:desktop){
+    display:none;
+  }
+
+  @include mq($until:tablet) {
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+    position:relative;
+    top:7px;
+    right:3px;
+  }
 }
 
-.featured-photo-container {
-  display:inline;
-  position:relative;
-  background:red;
-}
+// .featured-photo-container {
+//   display:inline;
+//   position:relative;
+// }
 
 .featured-victim-photo {
   width:90px;
@@ -169,9 +239,35 @@ $darkGrey: #808080;
   position:relative;
   float:left;
   display:inline;
-  left:-webkit-calc(100% - 100px);
-  left:-moz-calc(100% - 100px);
-  left:calc(100% - 100px);
+
+@include mq($from:wide){
+  left:-webkit-calc(100% - 90px);
+  left:-moz-calc(100% - 90px);
+  left:calc(100% - 90px);
+}
+
+  @include mq($from:leftCol, $until:wide){
+    left:20px;
+  }
+
+  @include mq($from:desktop, $until:leftCol){
+    left:-webkit-calc(100% + 400px);
+    left:-moz-calc(100% + 400px);
+    left:calc(100% + 400px);
+  }
+
+
+  @include mq($from:tablet, $until:desktop){
+    left:-webkit-calc(100% + 100px);
+    left:-moz-calc(100% + 100px);
+    left:calc(100% + 100px);
+  }
+
+  @include mq($until:tablet) {
+    left:0;
+    float:none;
+    display:block;
+  }
 }
 
 .victim-inline-separator {
@@ -187,16 +283,15 @@ $darkGrey: #808080;
 }
 
 #allVictimsPanel {
-  padding:20px 20px;
-  margin:20px 0;
   position:relative;
   background: transparent;
   background-image: url(../assets/img/dots.png);
   background-repeat:repeat;
 }
 
-#allVictimsPanel h2 {
-margin-left:-20px;
+#all-victims {
+  padding:0px 10px;
+  margin-bottom:20px;
 }
 
 .victim-inline, .victim-inline-name, .victim-inline-country, .victim-inline-description, .victim-inline-story, .victim-inline-story, .victim-inline-button {
@@ -308,7 +403,9 @@ margin-left:-20px;
     stroke:#3faa9f;
     stroke-width:3px;
   }
-
+.step-axisY .tick line {
+  stroke-width:0px;
+}
   .tick text {
     font-family: $f-sans-serif-text;
     font-size: 11px;
@@ -335,13 +432,21 @@ margin-left:-20px;
     stroke-width:1px;
   }
 
-  .stepLabel {
+  .stepNumber {
     font-family: $f-serif-headline;
-    font-size:17px;
+    font-size:22px;
     line-height:20px;
-    font-weight:400;
+    font-weight:900;
     display:inline;
-    max-width:100px;
-    padding:5px;
-    background-color: rgba(255,255,255,0.5);
+  }
+
+  .stepLabel {
+    font-family: $f-sans-serif-text;
+    font-size: 14px;
+    display:inline;
+    font-weight:100;
+  }
+  .bgLabel
+  {
+    opacity:0.3;
   }

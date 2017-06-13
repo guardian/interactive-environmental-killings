@@ -16,7 +16,7 @@ export function getSpreadsheetData() {
             	  killing.date = day.getDate() + " " + months[day.getMonth()] + " " + day.getFullYear();
                 return killing;
             }).sort(function(a, b) {
-                return a.date - b.date;
+                return b.date - a.date;
             });
 
             //return monthly cumulative data
