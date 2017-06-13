@@ -18,7 +18,7 @@ import {
 } from 'd3-selection'
 import {
   line,
-  curveStepBefore
+  curveStepAfter
 } from 'd3-shape'
 import {
   easeLinear
@@ -85,6 +85,8 @@ var killingsPast = [{
   victims2016: 200
 }]
 var killings2017 = [];
+var killings2016 = [];
+var killings2015 = [];
 
 // Fill sections with spreadsheet data
 getSpreadsheetData().then(function(data) {
@@ -173,7 +175,7 @@ getSpreadsheetData().then(function(data) {
     .y(function(d) {
       return yScale(d.victims2015);
     })
-    .curve(curveStepBefore);
+    .curve(curveStepAfter);
 
   var line2016 = line()
     .x(function(d) {
@@ -182,7 +184,7 @@ getSpreadsheetData().then(function(data) {
     .y(function(d) {
       return yScale(d.victims2016);
     })
-    .curve(curveStepBefore);
+    .curve(curveStepAfter);
 
   var line2017 = line()
     .x(function(d) {
@@ -191,7 +193,7 @@ getSpreadsheetData().then(function(data) {
     .y(function(d) {
       return yScale(d.cumulative2017);
     })
-    .curve(curveStepBefore);
+    .curve(curveStepAfter);
 
   var targetEl = document.querySelector("#g-step");
   var svg = select(targetEl).append("svg")
@@ -205,18 +207,16 @@ getSpreadsheetData().then(function(data) {
   //format the data
 
   var killingsDataByYear = cumulativeKillings.slice();
-  // console.log(killingsDataByYear);
+
+  killingsPast.forEach(function(byYear) {
+    killings2016.push(byYear.victims2016);
+    killings2015.push(byYear.victims2015);
+  })
+
 
   killingsDataByYear.forEach(function(byYear) {
-    // killingsPast.push(byYear.cumulative2015);
-    // killings2016.push(byYear.cumulative2016);
     return byYear.cumulative2017 = +byYear.cumulative2017
-    // killings2017.push(byYear.cumulative2017);
-    // console.log(killings2017);
     return byYear.month = +byYear.month;
-    // return d.cumulative2015 = +d.cumulative2015;
-    // return d.cumulative2016 = +d.cumulative2016;
-    // return d.cumulative2017 = +d.cumulative2017;
   })
 
 
@@ -260,39 +260,59 @@ getSpreadsheetData().then(function(data) {
     .attr("class", "line2017")
     .attr("d", line2017);
 
-console.log(line2016);
-
   svg.append("text")
-      .attr ("x", (stepWidth+5))
-      // .attr ("y", yScale(line2016[11]))
+      .attr("transform", function(line2016) {
+          return "translate(" + (stepWidth+10) + "," + (yScale(killings2016[killings2016.length-1]) - 2) + ")"
+})
       .attr("class","stepLabel")
   		.attr("text-anchor", "start")
   		.style("fill", "#333333")
   		.text(killingsPast[11].victims2016 + " murdered in 2016");
 
       svg.append("text")
-          .attr ("x", (stepWidth+5))
-          .attr ("y", 100)
+          .attr("transform", function(line2015) {
+              return "translate(" + (stepWidth+10) + "," + (yScale(killings2015[killings2015.length-1]) + 10) + ")"
+    })
           .attr("class","stepLabel")
       		.attr("text-anchor", "start")
       		.style("fill", "#bdbdbd")
       		.text(killingsPast[11].victims2015 + " murdered in 2015");
 
+var translateWidth = document.getElementsByClassName("line2017")[0].getBBox().width;
+
           svg.append("text")
-              .attr ("x", (stepWidth+5))
-              .attr ("y", 150)
+              .attr("transform", function(line2017) {
+                  return "translate(" + (translateWidth+20) + "," + (yScale(killingsDataByYear[killingsDataByYear.length-1].cumulative2017 )) + ")"
+        })
               .attr("class","stepLabel")
           		.attr("text-anchor", "start")
-          		.style("fill", "##3faa9f")
-          		.text(killingsDataByYear[killingsDataByYear.length].cumulative2017 + " murdered in 2015");
+          		.style("fill", "#3faa9f")
+          		.text(killingsDataByYear[killingsDataByYear.length-1].cumulative2017 + " murdered in 2017");
+
+          svg.append("rect")
+            .attr("class","lineEnd")
+            .attr("x", (stepWidth-4))
+            .attr("y", function(line2015){return yScale(killings2015[killings2015.length-1])})
+            .attr("width", 7)
+            .attr("height", 7)
+            .style("fill","#bdbdbd");
+
+            svg.append("rect")
+              .attr("class","lineEnd")
+              .attr("x", (stepWidth-4))
+              .attr("y", function(line2016){return yScale(killings2016[killings2016.length-1])})
+              .attr("width", 7)
+              .attr("height", 7)
+              .style("fill","#333");
+
+            svg.append("rect")
+              .attr("class","lineEnd")
+              .attr("x", (translateWidth+7))
+              .attr("y", function(line2017){return yScale(killingsDataByYear[killingsDataByYear.length-1].cumulative2017 + 4)})
+              .attr("width", 8)
+              .attr("height", 8)
+              .style("fill","#3faa9f");
 
 
 
-  //adds dots at the end of the linesvg.selectAll(".dot")
-  // .data(data.filter(function(d) { return d; }))
-  // .enter().append("circle")
-  //   .attr("class", "dot")
-  //   .attr("cx", line.x())
-  //   .attr("cy", line.y())
-  //   .attr("r", 3.5);
 })
