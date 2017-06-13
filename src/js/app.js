@@ -436,7 +436,7 @@ let drawMap = (data) => {
 
         let topFive = mapData.sort((a, b) => b["2015--count-per-country"]-a["2015--count-per-country"]).slice(0, 5)
 
-        let labels = svg.selectAll("text")
+        let labels = svg.append("g").selectAll("text")
             .data(topFive)
             .enter().append("text")
             .attr("class", "map-label")
@@ -477,7 +477,9 @@ let drawMap = (data) => {
 
         function animateCircles(circles, year) {
           // this is the worst line of code I've ever written, but it works
-          let topFive = (year !== "All years") ? mapData.sort((a, b) => b[year + "--count-per-country"]-a[year + "--count-per-country"]).slice(0, 5) : mapData.sort((a, b) => ((Number(b["2016--count-per-country"]) + Number(b["2015--count-per-country"])))-((Number(a["2016--count-per-country"]) + Number(a["2015--count-per-country"])))).slice(0, 5);
+          let topFive = (year !== "All years")
+            ? mapData.sort((a, b) => b[year + "--count-per-country"]-a[year + "--count-per-country"]).slice(0, 5)
+            : mapData.sort((a, b) => ((Number(b["2016--count-per-country"]) + Number(b["2015--count-per-country"])))-((Number(a["2016--count-per-country"]) + Number(a["2015--count-per-country"])))).slice(0, 5);
 
           labels.data(topFive)
               .attr("x", (d) => {
