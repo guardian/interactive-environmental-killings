@@ -3,14 +3,18 @@ import featuredTemplate from '../templates/featured.html'
 import allVictimsTemplate from '../templates/allvictims.html'
 import Mustache from 'mustache'
 import xr from 'xr'
-import {scaleLinear, scalePoint} from 'd3-scale'
+import * as topojson from 'topojson-client'
+import {scaleLinear, scalePoint, scaleSqrt} from 'd3-scale'
 import {max} from 'd3-array'
 import {select,selectAll} from 'd3-selection'
 import {line, curveStepAfter} from 'd3-shape'
-import {easeLinear} from 'd3-ease'
+import {easeLinear, easeCubicInOut} from 'd3-ease'
 import {transition} from 'd3-transition'
 import {axisLeft} from 'd3-axis'
+import {geoPath} from 'd3-geo'
 import {axisBottom} from 'd3-axis'
+import {geoKavrayskiy7} from 'd3-geo-projection'
+import { geoMercator } from 'd3-geo'
 
 var count = document.querySelector(".count-header__count__number");
 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -163,4 +167,85 @@ else
   //   .attr("cx", line.x())
   //   .attr("cy", line.y())
   //   .attr("r", 3.5);
+
+  drawMap(data);
 })
+
+let drawMap = (data) => {
+    let mapEl = document.querySelector("#g-map")
+    mapEl.classList.remove("mainCol");
+
+    xr.get("<%= path %>/assets/world-50m.json").then((data) => {
+        let world = data.data;
+
+        var width = mapEl.clientWidth,
+            height = width * (3.5 / 5);
+
+        var countries = topojson.feature(world, world.objects.countries).features,
+            neighbors = topojson.neighbors(world.objects.countries.geometries);
+
+        var projection = geoMercator()
+            .fitSize([width, width], topojson.feature(world, world.objects.countries));
+        // .scale(170)
+        // .translate([width / 2, height / 2])
+        // .precision(.1);
+
+        var drawPath = geoPath()
+            .projection(projection);
+
+        var svg = select("#g-map").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        var circleScale = scaleSqrt().domain([0, 50]).range([0, 40])
+
+        svg.selectAll(".country")
+            .data(countries)
+            .enter().insert("path")
+            .attr("class", "country")
+            .attr("d", drawPath)
+            .style("fill", "#cccccc")
+            .style("stroke", "#dcdcdc");
+
+        // svg.insert("path")
+        //     .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
+        //     .attr("class", "boundary")
+        //     .attr("d", path);
+
+        let t = transition()
+          .duration(1000)
+          .ease(easeCubicInOut);
+
+        let circles = svg.selectAll("circle")
+            .data(mapData)
+            .enter().append("circle")
+            .attr("class", "circle")
+            .attr("cx", (d) => {
+                let xy = projection([d.location.lng, d.location.lat]);
+                return xy[0];
+            })
+            .attr("cy", (d) => {
+                let xy = projection([d.location.lng, d.location.lat]);
+                return xy[1];
+            })
+            .attr("r", (d) => circleScale(d["2015--count-per-country"]))
+            .style("fill", "none")
+            .style("stroke", "#3faa9f")
+            .style("stroke-width", "2px")
+
+        circles
+            .transition(t)
+            .delay(2000)
+            .attr("cx", (d) => {
+                let xy = projection([d.location.lng, d.location.lat]);
+                return xy[0];
+            })
+            .attr("cy", (d) => {
+                let xy = projection([d.location.lng, d.location.lat]);
+                return xy[1];
+            })
+            .attr("r", (d) => circleScale(d["2016--count-per-country"]));
+
+    });
+
+}
