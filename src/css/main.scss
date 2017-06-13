@@ -450,3 +450,50 @@ $darkGrey: #808080;
   {
     opacity:0.3;
   }
+
+//map
+
+#g-map {
+  position: relative;
+}
+
+.map-label {
+  @include fs-textSans(2);
+}
+
+.map-years {
+  display: block;
+  position: absolute;
+  top: 0;
+  @include mq(desktop) {
+    top: 24px;
+  }
+
+  @include mq(leftCol) {
+    left: 160px;
+  }
+
+  @include mq(wide) {
+    left: 240px;
+  }
+
+  span {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-right: 5px;
+    @include fs-textSans(4);
+    font-size: 18px;
+    color: #767676;
+    background-color: #f6f6f6;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.active {
+      background-color: #767676;
+      color: #fff;
+    }
+  }
+}
