@@ -337,10 +337,13 @@ margin-left:-20px;
 
   .stepLabel {
     font-family: $f-serif-headline;
-    font-size:18px;
+    font-size:17px;
     line-height:20px;
-    font-weight:900;
+    font-weight:400;
     display:inline;
+    max-width:100px;
+    padding:5px;
+    background-color: rgba(255,255,255,0.5);
   }
 
 //map

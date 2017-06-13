@@ -53,8 +53,8 @@ async function cleanMapData(data) {
     let savedLocations = JSON.parse(fs.readFileSync("./src/assets/data/saved-locations.json", "utf8"));
 
     for (let country of data) {
-        let locationData = (savedLocations.find((d) => d.country = country.country))
-            ? savedLocations.find((d) => d.country = country.country).location
+        let locationData = (savedLocations.find((d) => d.country === country.country))
+            ? savedLocations.find((d) => d.country === country.country).location
             : (await rp({uri: "https://maps.googleapis.com/maps/api/geocode/json?address=" + country.country + "&key=AIzaSyB8xlBqUbeOjiVqDrp9IGXdHz1byqRF-d8", json: true})).results[0].geometry.location;
 
         country.location = locationData;
