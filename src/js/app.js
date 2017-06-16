@@ -6,18 +6,48 @@ import allVictimsTemplate from '../templates/allvictims.html'
 import Mustache from 'mustache'
 import xr from 'xr'
 import * as topojson from 'topojson-client'
-import {scaleLinear, scalePoint, scaleSqrt} from 'd3-scale'
-import {max} from 'd3-array'
-import {select,selectAll} from 'd3-selection'
-import {line, curveStepAfter, curveStepBefore} from 'd3-shape'
-import {easeLinear, easeCubicInOut} from 'd3-ease'
-import {transition} from 'd3-transition'
-import {axisLeft} from 'd3-axis'
-import {geoPath} from 'd3-geo'
-import {axisBottom} from 'd3-axis'
-import { geoMercator } from 'd3-geo'
+import {
+  scaleLinear,
+  scalePoint,
+  scaleSqrt
+} from 'd3-scale'
+import {
+  max
+} from 'd3-array'
+import {
+  select,
+  selectAll
+} from 'd3-selection'
+import {
+  line,
+  curveStepAfter,
+  curveStepBefore
+} from 'd3-shape'
+import {
+  easeLinear,
+  easeCubicInOut
+} from 'd3-ease'
+import {
+  transition
+} from 'd3-transition'
+import {
+  axisLeft
+} from 'd3-axis'
+import {
+  geoPath
+} from 'd3-geo'
+import {
+  axisBottom
+} from 'd3-axis'
+import {
+  geoMercator
+} from 'd3-geo'
 
-var count = document.querySelector(".count-header__count__number");
+var expandList = document.querySelector(".read-more");
+var count1 = document.querySelector(".count-header__count__number:nth-of-type(1)");
+var count2 = document.querySelector(".count-header__count__number:nth-of-type(2)");
+var count3 = document.querySelector(".count-header__count__number:nth-of-type(3)");
+var count4 = document.querySelector(".count-header__count__number:nth-of-type(4)");
 var months = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
 var killingsPast = [{
   month: "Jan",
@@ -78,7 +108,22 @@ getSpreadsheetData().then(function(data) {
   //return count
   var total = data.Killings2017.length;
   // console.log(total);
-  count.innerHTML = total;
+  // count.innerHTML = total
+
+  //animate count
+  count1.innerHTML = [total - 3].map((num) => {
+    return (num < 10) ? "0" + num : num;
+  });
+  count2.innerHTML = [total - 2].map((num) => {
+    return (num < 10) ? "0" + num : num;
+  });
+  count3.innerHTML = [total - 1].map((num) => {
+    return (num < 10) ? "0" + num : num;
+  });
+  count4.innerHTML = [total].map((num) => {
+    return (num < 10) ? "0" + num : num;
+  });
+
   let mostRecentVictims = data.Killings2017.filter(function(killing, i) {
     return killing.highlight == "yes"
   }).slice(-4).sort(function(a, b) {
@@ -127,6 +172,9 @@ getSpreadsheetData().then(function(data) {
 
   document.querySelector("#featured-victim").innerHTML = featuredHTML;
   document.querySelector("#all-victims").innerHTML = allVictimsHTML;
+  var listHeight = document.querySelector("#all-victims").offsetHeight;
+  var allVictimsHeight = document.querySelector("#allVictimsPanel").offsetHeight;
+  console.log(listHeight);
 
   // populate step-graphic with cumulative monthly killings
 
@@ -246,7 +294,7 @@ getSpreadsheetData().then(function(data) {
     .attr("class", "line2017")
     .attr("d", line2017);
 
-//add labels
+  //add labels
 
   var translateWidth = document.getElementsByClassName("line2017")[0].getBBox().width;
 
@@ -263,13 +311,13 @@ getSpreadsheetData().then(function(data) {
       return "translate(" + (translateWidth) + "," + (yScale(killingsDataByYear[killingsDataByYear.length - 1].cumulative2017) - 40) + ")"
     });
 
-    labels2017.append("rect")
-      .attr("x", 0)
-      .attr("y", -20)
-      .attr("class", "bgLabel")
-      .attr("width",70)
-      .attr("height",70)
-      .style("fill", "#e6e6e6")
+  labels2017.append("rect")
+    .attr("x", 0)
+    .attr("y", -20)
+    .attr("class", "bgLabel")
+    .attr("width", 70)
+    .attr("height", 70)
+    .style("fill", "#e6e6e6")
 
   labels2017.append("text")
     .attr("x", 5)
@@ -295,21 +343,21 @@ getSpreadsheetData().then(function(data) {
     .style("fill", "#3faa9f")
     .text("in 2017");
 
-    svg.append("rect")
-      .attr("class", "lineEnd")
-      .attr("x", (translateWidth + 7))
-      .attr("y", function(line2017) {
-        return yScale(killingsDataByYear[killingsDataByYear.length - 1].cumulative2017 + 4)
-      })
-      .attr("width", 8)
-      .attr("height", 8)
-      .style("fill", "#3faa9f");
+  svg.append("rect")
+    .attr("class", "lineEnd")
+    .attr("x", (translateWidth + 7))
+    .attr("y", function(line2017) {
+      return yScale(killingsDataByYear[killingsDataByYear.length - 1].cumulative2017 + 4)
+    })
+    .attr("width", 8)
+    .attr("height", 8)
+    .style("fill", "#3faa9f");
 
   //2016
   var labels2016 = svg.append("g")
-  .attr("transform", function(line2016) {
-    return "translate(" + (stepWidth + 10) + "," + (yScale(killings2016[killings2016.length - 1]) - 30) + ")"
-  })
+    .attr("transform", function(line2016) {
+      return "translate(" + (stepWidth + 10) + "," + (yScale(killings2016[killings2016.length - 1]) - 30) + ")"
+    })
 
 
   labels2016.append("text")
@@ -357,263 +405,279 @@ getSpreadsheetData().then(function(data) {
     .attr("height", 7)
     .style("fill", "#333");
 
-    //2015
-    var labels2015 = svg.append("g")
+  //2015
+  var labels2015 = svg.append("g")
     .attr("transform", function(line2015) {
       return "translate(" + (stepWidth + 10) + "," + (yScale(killings2015[killings2015.length - 1]) + 10) + ")"
     })
 
 
-    labels2015.append("text")
-      .attr("x", 0)
-      .attr("y", 0)
-      .attr("class", "stepNumber")
-      .attr("text-anchor", "start")
-      .style("fill", "#bdbdbd")
-      .text(killings2015[killings2015.length - 1]);
+  labels2015.append("text")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("class", "stepNumber")
+    .attr("text-anchor", "start")
+    .style("fill", "#bdbdbd")
+    .text(killings2015[killings2015.length - 1]);
 
-    labels2015.append("text")
-      .attr("x", 0)
-      .attr("y", 16)
-      .attr("class", "stepLabel")
-      .attr("text-anchor", "start")
-      .style("fill", "#bdbdbd")
-      .text("murdered");
+  labels2015.append("text")
+    .attr("x", 0)
+    .attr("y", 16)
+    .attr("class", "stepLabel")
+    .attr("text-anchor", "start")
+    .style("fill", "#bdbdbd")
+    .text("murdered");
 
-    labels2015.append("text")
-      .attr("x", 0)
-      .attr("y", 32)
-      .attr("class", "stepLabel")
-      .attr("text-anchor", "start")
-      .style("fill", "#bdbdbd")
-      .text("in 2015");
+  labels2015.append("text")
+    .attr("x", 0)
+    .attr("y", 32)
+    .attr("class", "stepLabel")
+    .attr("text-anchor", "start")
+    .style("fill", "#bdbdbd")
+    .text("in 2015");
 
-drawMap(data);
+  drawMap(data);
 
-var translateWidth = document.getElementsByClassName("line2017")[0].getBBox().width;
+  expandList.addEventListener("click", function(d) {
+    // listHeight = allVictimsHeight;
+    document.querySelector("#all-victims").style.height = "initial";
+    document.querySelector(".gradient").style.display = "none";
+  });
 
-        //   svg.append("text")
-        //       .attr("transform", function(line2017) {
-        //           return "translate(" + (translateWidth+20) + "," + (yScale(killingsDataByYear[killingsDataByYear.length-1].cumulative2017 )) + ")"
-        // })
-        //       .attr("class","stepLabel")
-        //   		.attr("text-anchor", "start")
-        //   		.style("fill", "#3faa9f")
-        //   		.text(killingsDataByYear[killingsDataByYear.length-1].cumulative2017 + " murdered in 2017");
+  var translateWidth = document.getElementsByClassName("line2017")[0].getBBox().width;
 
-          svg.append("rect")
-            .attr("class","lineEnd")
-            .attr("x", (stepWidth-4))
-            .attr("y", function(line2015){return yScale(killings2015[killings2015.length-1])})
-            .attr("width", 7)
-            .attr("height", 7)
-            .style("fill","#bdbdbd");
+  //   svg.append("text")
+  //       .attr("transform", function(line2017) {
+  //           return "translate(" + (translateWidth+20) + "," + (yScale(killingsDataByYear[killingsDataByYear.length-1].cumulative2017 )) + ")"
+  // })
+  //       .attr("class","stepLabel")
+  //   		.attr("text-anchor", "start")
+  //   		.style("fill", "#3faa9f")
+  //   		.text(killingsDataByYear[killingsDataByYear.length-1].cumulative2017 + " murdered in 2017");
 
-            svg.append("rect")
-              .attr("class","lineEnd")
-              .attr("x", (stepWidth-4))
-              .attr("y", function(line2016){return yScale(killings2016[killings2016.length-1])})
-              .attr("width", 7)
-              .attr("height", 7)
-              .style("fill","#333");
+  svg.append("rect")
+    .attr("class", "lineEnd")
+    .attr("x", (stepWidth - 4))
+    .attr("y", function(line2015) {
+      return yScale(killings2015[killings2015.length - 1])
+    })
+    .attr("width", 7)
+    .attr("height", 7)
+    .style("fill", "#bdbdbd");
 
-            svg.append("rect")
-              .attr("class","lineEnd")
-              .attr("x", (translateWidth+7))
-              .attr("y", function(line2017){return yScale(killingsDataByYear[killingsDataByYear.length-1].cumulative2017 + 4)})
-              .attr("width", 8)
-              .attr("height", 8)
-              .style("fill","#3faa9f");
+  svg.append("rect")
+    .attr("class", "lineEnd")
+    .attr("x", (stepWidth - 4))
+    .attr("y", function(line2016) {
+      return yScale(killings2016[killings2016.length - 1])
+    })
+    .attr("width", 7)
+    .attr("height", 7)
+    .style("fill", "#333");
+
+  svg.append("rect")
+    .attr("class", "lineEnd")
+    .attr("x", (translateWidth + 7))
+    .attr("y", function(line2017) {
+      return yScale(killingsDataByYear[killingsDataByYear.length - 1].cumulative2017 + 4)
+    })
+    .attr("width", 8)
+    .attr("height", 8)
+    .style("fill", "#3faa9f");
 })
 
 let drawMap = (data) => {
-    let mapEl = document.querySelector("#g-map")
-    mapEl.classList.remove("mainCol");
+  let mapEl = document.querySelector("#g-map")
+  mapEl.classList.remove("mainCol");
 
-    xr.get("<%= path %>/assets/world-50m.json").then((data) => {
-        let world = data.data;
+  xr.get("<%= path %>/assets/world-50m.json").then((data) => {
+    let world = data.data;
 
-        var width = mapEl.clientWidth,
-            height = width * (3.5 / 5);
+    var width = mapEl.clientWidth,
+      height = width * (3.5 / 5);
 
-        var countries = topojson.feature(world, world.objects.countries).features,
-            neighbors = topojson.neighbors(world.objects.countries.geometries);
+    var countries = topojson.feature(world, world.objects.countries).features,
+      neighbors = topojson.neighbors(world.objects.countries.geometries);
 
-        var projection = geoMercator()
-            .fitSize([width, width], topojson.feature(world, world.objects.countries));
-        // .scale(170)
-        // .translate([width / 2, height / 2])
-        // .precision(.1);
+    var projection = geoMercator()
+      .fitSize([width, width], topojson.feature(world, world.objects.countries));
+    // .scale(170)
+    // .translate([width / 2, height / 2])
+    // .precision(.1);
 
-        var drawPath = geoPath()
-            .projection(projection);
+    var drawPath = geoPath()
+      .projection(projection);
 
-        var svg = select(mapEl).append("svg")
-            .attr("width", width)
-            .attr("height", height);
+    var svg = select(mapEl).append("svg")
+      .attr("width", width)
+      .attr("height", height);
 
-        var circleScale = scaleSqrt().domain([0, 50]).range([0, (width > 740) ? 40 : 30])
-
-
-        svg.selectAll(".country")
-            .data(countries)
-            .enter().insert("path")
-            .attr("class", "country")
-            .attr("d", drawPath)
-            .style("fill", "#cccccc")
-            .style("stroke", "#dcdcdc");
-
-        // svg.insert("path")
-        //     .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
-        //     .attr("class", "boundary")
-        //     .attr("d", path);
-
-        let t = transition()
-          .duration(1000)
-          .ease(easeCubicInOut);
-
-        let circles = svg.selectAll("circle")
-            .data(mapData)
-            .enter().append("circle")
-            .attr("class", "circle")
-            .attr("cx", (d) => {
-                let xy = projection([d.location.lng, d.location.lat]);
-                return xy[0];
-            })
-            .attr("cy", (d) => {
-                let xy = projection([d.location.lng, d.location.lat]);
-                return xy[1];
-            })
-            .attr("r", (d) => circleScale(d["2015--count-per-country"]))
-            .style("fill", "none")
-            .style("stroke", "#3faa9f")
-            .style("stroke-width", "2px")
-
-        let keyCircles = svg.append("g").selectAll("circle")
-            .data([40, 10])
-            .enter().append("circle")
-            .attr("class", "circle")
-            .attr("cx", (d, i) => {
-                return width - ((width > 740) ? 60 : 50);
-            })
-            .attr("cy", (d, i) => {
-                if(i === 0) {
-                  return (width > 740) ? 54 : 42;
-                } else {
-                  return (width > 740) ? 70 : 54;
-                }
-            })
-            .attr("r", (d) => circleScale(d))
-            .style("fill", "none")
-            .style("stroke", "#3faa9f")
-            .style("stroke-width", "2px")
-
-        let keyLabels = svg.append("g").selectAll("text")
-            .data([40, 10])
-            .enter().append("text")
-            .attr("class", "map-label")
-            .attr("x", (d, i) => {
-                return width - ((width > 740) ? 60 : 50);
-            })
-            .attr("y", (d, i) => {
-                if(i === 0) {
-                  return (width > 740) ? 50 : 42;
-                } else {
-                  return (width > 740) ? 72 : 56;
-                }
-            })
-            .text((d) => d)
-            .style("text-anchor", "middle")
-            .attr("dy", (d) => {
-              if(d === 40) {
-                return -8;
-              } else {
-                return 4;
-              }
-            });
-
-        svg.append("text")
-          .attr("x", width - ((width > 740) ? 60 : 50))
-          .attr("y", (width > 740) ? 12 : 12)
-          .classed("map-label", true)
-          .text("Activist deaths")
-          .style("text-anchor", "middle")
-          .style("font-weight", "bold");
-
-        let topFive = mapData.sort((a, b) => b["2015--count-per-country"]-a["2015--count-per-country"]).slice(0, 5)
-
-        let labels = svg.append("g").selectAll("text")
-            .data(topFive)
-            .enter().append("text")
-            .attr("class", "map-label")
-            .attr("x", (d) => {
-                let xy = projection([d.location.lng, d.location.lat]);
-                return xy[0];
-            })
-            .attr("y", (d) => {
-                let xy = projection([d.location.lng, d.location.lat]);
-                return xy[1];
-            })
-            .text((d) => d.country)
-            .attr("dy", "4")
-            .attr("text-anchor", "middle")
+    var circleScale = scaleSqrt().domain([0, 50]).range([0, (width > 740) ? 40 : 30])
 
 
-        // add years
+    svg.selectAll(".country")
+      .data(countries)
+      .enter().insert("path")
+      .attr("class", "country")
+      .attr("d", drawPath)
+      .style("fill", "#cccccc")
+      .style("stroke", "#dcdcdc");
 
-        let buttons = select(mapEl).append("div")
-          .classed("map-years", true)
-          .selectAll("span")
-          .data([2015, 2016, "All years"])
-          .enter()
-          .append("span")
-          .html((d) => d)
-          .classed("active", (d) => {
-            return d === "All years";
-          });
+    // svg.insert("path")
+    //     .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
+    //     .attr("class", "boundary")
+    //     .attr("d", path);
 
-          buttons.on("click", function(d) {
-            buttons.classed("active", false);
+    let t = transition()
+      .duration(1000)
+      .ease(easeCubicInOut);
 
-            select(this).classed("active", true);
+    let circles = svg.selectAll("circle")
+      .data(mapData)
+      .enter().append("circle")
+      .attr("class", "circle")
+      .attr("cx", (d) => {
+        let xy = projection([d.location.lng, d.location.lat]);
+        return xy[0];
+      })
+      .attr("cy", (d) => {
+        let xy = projection([d.location.lng, d.location.lat]);
+        return xy[1];
+      })
+      .attr("r", (d) => circleScale(d["2015--count-per-country"]))
+      .style("fill", "none")
+      .style("stroke", "#3faa9f")
+      .style("stroke-width", "2px")
 
-            animateCircles(circles, d);
-          });
-
-
-        function animateCircles(circles, year) {
-          // this is the worst line of code I've ever written, but it works
-          let topFive = (year !== "All years")
-            ? mapData.sort((a, b) => b[year + "--count-per-country"]-a[year + "--count-per-country"]).slice(0, 5)
-            : mapData.sort((a, b) => ((Number(b["2016--count-per-country"]) + Number(b["2015--count-per-country"])))-((Number(a["2016--count-per-country"]) + Number(a["2015--count-per-country"])))).slice(0, 5);
-
-          labels.data(topFive)
-              .attr("x", (d) => {
-                  let xy = projection([d.location.lng, d.location.lat]);
-                  return xy[0];
-              })
-              .attr("y", (d) => {
-                  let xy = projection([d.location.lng, d.location.lat]);
-                  return xy[1];
-              })
-              .text((d) => d.country);
-
-          circles
-            .transition(t)
-            .attr("cx", (d) => {
-                let xy = projection([d.location.lng, d.location.lat]);
-                return xy[0];
-            })
-            .attr("cy", (d) => {
-                let xy = projection([d.location.lng, d.location.lat]);
-                return xy[1];
-            })
-            .attr("r", (d) => {
-              let count = (year !== "All years") ? d[year + "--count-per-country"] : (Number(d["2016--count-per-country"]) + Number(d["2015--count-per-country"]));
-              return circleScale(count);
-            });
+    let keyCircles = svg.append("g").selectAll("circle")
+      .data([40, 10])
+      .enter().append("circle")
+      .attr("class", "circle")
+      .attr("cx", (d, i) => {
+        return width - ((width > 740) ? 60 : 50);
+      })
+      .attr("cy", (d, i) => {
+        if (i === 0) {
+          return (width > 740) ? 54 : 42;
+        } else {
+          return (width > 740) ? 70 : 54;
         }
+      })
+      .attr("r", (d) => circleScale(d))
+      .style("fill", "none")
+      .style("stroke", "#3faa9f")
+      .style("stroke-width", "2px")
 
+    let keyLabels = svg.append("g").selectAll("text")
+      .data([40, 10])
+      .enter().append("text")
+      .attr("class", "map-label")
+      .attr("x", (d, i) => {
+        return width - ((width > 740) ? 60 : 50);
+      })
+      .attr("y", (d, i) => {
+        if (i === 0) {
+          return (width > 740) ? 50 : 42;
+        } else {
+          return (width > 740) ? 72 : 56;
+        }
+      })
+      .text((d) => d)
+      .style("text-anchor", "middle")
+      .attr("dy", (d) => {
+        if (d === 40) {
+          return -8;
+        } else {
+          return 4;
+        }
+      });
+
+    svg.append("text")
+      .attr("x", width - ((width > 740) ? 60 : 50))
+      .attr("y", (width > 740) ? 12 : 12)
+      .classed("map-label", true)
+      .text("Activist deaths")
+      .style("text-anchor", "middle")
+      .style("font-weight", "bold");
+
+    let topFive = mapData.sort((a, b) => b["2015--count-per-country"] - a["2015--count-per-country"]).slice(0, 5)
+
+    let labels = svg.append("g").selectAll("text")
+      .data(topFive)
+      .enter().append("text")
+      .attr("class", "map-label")
+      .attr("x", (d) => {
+        let xy = projection([d.location.lng, d.location.lat]);
+        return xy[0];
+      })
+      .attr("y", (d) => {
+        let xy = projection([d.location.lng, d.location.lat]);
+        return xy[1];
+      })
+      .text((d) => d.country)
+      .attr("dy", "4")
+      .attr("text-anchor", "middle")
+
+
+    // add years
+
+    let buttons = select(mapEl).append("div")
+      .classed("map-years", true)
+      .selectAll("span")
+      .data([2015, 2016, "All years"])
+      .enter()
+      .append("span")
+      .html((d) => d)
+      .classed("active", (d) => {
+        return d === "All years";
+      });
+
+    buttons.on("click", function(d) {
+      buttons.classed("active", false);
+
+      select(this).classed("active", true);
+
+      animateCircles(circles, d);
     });
+
+
+
+    function animateCircles(circles, year) {
+      // this is the worst line of code I've ever written, but it works
+      let topFive = (year !== "All years") ?
+        mapData.sort((a, b) => b[year + "--count-per-country"] - a[year + "--count-per-country"]).slice(0, 5) :
+        mapData.sort((a, b) => ((Number(b["2016--count-per-country"]) + Number(b["2015--count-per-country"]))) - ((Number(a["2016--count-per-country"]) + Number(a["2015--count-per-country"])))).slice(0, 5);
+
+      labels.data(topFive)
+        .attr("x", (d) => {
+          let xy = projection([d.location.lng, d.location.lat]);
+          return xy[0];
+        })
+        .attr("y", (d) => {
+          let xy = projection([d.location.lng, d.location.lat]);
+          return xy[1];
+        })
+        .text((d) => d.country);
+
+      circles
+        .transition(t)
+        .attr("cx", (d) => {
+          let xy = projection([d.location.lng, d.location.lat]);
+          return xy[0];
+        })
+        .attr("cy", (d) => {
+          let xy = projection([d.location.lng, d.location.lat]);
+          return xy[1];
+        })
+        .attr("r", (d) => {
+          let count = (year !== "All years") ? d[year + "--count-per-country"] : (Number(d["2016--count-per-country"]) + Number(d["2015--count-per-country"]));
+          return circleScale(count);
+        });
+    }
+
+    //hide victims panel on mobile
+    d
+
+  });
 
 }

@@ -287,12 +287,56 @@ $darkGrey: #808080;
   background: transparent;
   background-image: url(../assets/img/dots.png);
   background-repeat:repeat;
+  margin-bottom:20px;
 }
 
 #all-victims {
   padding:0px 10px;
-  margin-bottom:20px;
+
+
+  @include mq($until:tablet) {
+    height:350px;
+    overflow:hidden;
+  }
 }
+
+.read-more {
+  background:
+    linear-gradient(
+      rgba(230, 230, 230, 0.3),
+      rgba(230, 230, 230, 0.8)
+    );
+    margin-top:10px;
+    padding:10px 10px;
+    text-align:center;
+    font-family: $f-sans-serif-text;
+    font-size: 15px;
+    color:#333;
+    width:100%;
+    border-top:1px solid #f5f5f5;
+    position: relative;
+
+    @include mq($from:tablet) {
+      display:none;
+    }
+}
+
+.read-more:hover {
+  color:#767676;
+  cursor:pointer;
+}
+
+.expand {
+    background-image: url(assets/img/arrow.svg);
+    width:15px;
+    height:15px;
+    display:inline-block;
+    background-repeat: no-repeat;
+    position: relative;
+    top:5px;
+}
+
+
 
 .victim-inline, .victim-inline-name, .victim-inline-country, .victim-inline-description, .victim-inline-story, .victim-inline-story, .victim-inline-button {
   display:inline;
