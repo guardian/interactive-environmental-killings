@@ -113,6 +113,7 @@ $darkGrey: #808080;
   position:relative;
   padding:0 10px;
   margin-top:10px;
+  z-index:100;
 
   @include mq(leftCol) {
       margin-left: 160px;
@@ -499,12 +500,58 @@ $darkGrey: #808080;
 
 #g-map {
   position: relative;
+
+}
+
+.g-world-map {
+  margin-top:-200px;
+
+  @include mq($from:desktop, $until:wide){
+    margin-top:-200px;
+  }
+
+  @include mq($until:desktop){
+    margin-top:-100px;
+  }
 }
 
 .map-label {
-  @include fs-textSans(2);
+  font-family: $f-sans-serif-text;
+  font-size: 14px;
+  font-weight:400;
 }
 
+// #key {
+//   margin-top:150px;
+// }
+
+.countryTable {
+
+  font-family: $f-sans-serif-text;
+  font-size: 15px;
+  line-height:24px;
+  font-weight:100;
+  color:#767676;
+}
+
+.countryTable tr {
+  height: 20px;
+  vertical-align: text-top;
+  border-bottom:1px solid #dcdcdc;
+}
+
+.countryTable td {
+  padding:3px 0;
+}
+#countryTbl {
+  width:45%;
+  max-width:170px;
+  color:#ccc;
+}
+
+.countryName{
+  color:#222;
+}
 .map-years {
   display: block;
   position: absolute;
@@ -521,22 +568,27 @@ $darkGrey: #808080;
     left: 240px;
   }
 
+  @include mq($until:desktop){
+    padding-left:10px;
+  }
+
+
   span {
     display: inline-block;
     padding: 3px 10px;
     border-radius: 20px;
     margin-right: 5px;
     @include fs-textSans(4);
-    font-size: 18px;
-    color: #767676;
-    background-color: #f6f6f6;
+    font-size: 15px;
+    color: #222;
+    background-color: #ccc;
 
     &:hover {
       cursor: pointer;
     }
 
     &.active {
-      background-color: #767676;
+      background-color: #222;
       color: #fff;
     }
   }

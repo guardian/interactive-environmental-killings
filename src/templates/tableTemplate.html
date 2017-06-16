@@ -1,0 +1,18 @@
+<table class="countryTable">
+  <thead>
+    <th id="countryTbl">Country</th>
+    <th style="font-weight:900;color:#222;">All years</th>
+    <th style="font-weight:100;color:#767676;">2016</th>
+    <th style="font-weight:100;color:#767676;" >2015</th>
+  </thead>
+  <tbody>
+    {{#data}}
+      <tr>
+        <td class="countryName">{{country}}</td>
+        <td class="countryName">{{all--count-per-country}}</td>
+        <td>{{2016--count-per-country}}</td>
+        <td>{{2015--count-per-country}}</td>
+      </tr>
+    {{/data}}
+  </tbody>
+</table>

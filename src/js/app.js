@@ -3,6 +3,7 @@ import {
 } from './getSpreadsheet.js'
 import featuredTemplate from '../templates/featured.html'
 import allVictimsTemplate from '../templates/allvictims.html'
+import tableTemplate from '../templates/tableTemplate.html'
 import Mustache from 'mustache'
 import xr from 'xr'
 import * as topojson from 'topojson-client'
@@ -436,7 +437,13 @@ getSpreadsheetData().then(function(data) {
     .style("fill", "#bdbdbd")
     .text("in 2015");
 
-  drawMap(data);
+
+    if ( document.body.clientWidth > 740) {
+  drawMap(data);}
+  else {
+    console.log('run');
+    drawTable(data);
+  }
 
   expandList.addEventListener("click", function(d) {
     // listHeight = allVictimsHeight;
@@ -486,6 +493,28 @@ getSpreadsheetData().then(function(data) {
     .style("fill", "#3faa9f");
 })
 
+let drawTable = data => {
+  let tableEl = document.querySelector("#g-map");
+
+  let sortedData = mapData.sort((a,b) => {
+    if(Number(a["all--count-per-country"]) > Number(b["all--count-per-country"])) {
+      return -1;
+    } else if (Number(a["all--count-per-country"]) < Number(b["all--count-per-country"])) {
+      return 1
+    } else {
+      return 0;
+    }
+  });
+
+  let tableHTML = Mustache.render(tableTemplate, {
+    data: sortedData
+  });
+
+  console.log(tableHTML)
+
+  tableEl.innerHTML = tableHTML;
+}
+
 let drawMap = (data) => {
   let mapEl = document.querySelector("#g-map")
   mapEl.classList.remove("mainCol");
@@ -510,7 +539,8 @@ let drawMap = (data) => {
 
     var svg = select(mapEl).append("svg")
       .attr("width", width)
-      .attr("height", height);
+      .attr("height", height)
+      .attr("class", "g-world-map");
 
     var circleScale = scaleSqrt().domain([0, 50]).range([0, (width > 740) ? 40 : 30])
 
@@ -520,13 +550,8 @@ let drawMap = (data) => {
       .enter().insert("path")
       .attr("class", "country")
       .attr("d", drawPath)
-      .style("fill", "#cccccc")
+      .style("fill", "#fff")
       .style("stroke", "#dcdcdc");
-
-    // svg.insert("path")
-    //     .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
-    //     .attr("class", "boundary")
-    //     .attr("d", path);
 
     let t = transition()
       .duration(1000)
@@ -546,7 +571,7 @@ let drawMap = (data) => {
       })
       .attr("r", (d) => circleScale(d["2015--count-per-country"]))
       .style("fill", "none")
-      .style("stroke", "#3faa9f")
+      .style("stroke", "#69d1ca")
       .style("stroke-width", "2px")
 
     let keyCircles = svg.append("g").selectAll("circle")
@@ -558,14 +583,14 @@ let drawMap = (data) => {
       })
       .attr("cy", (d, i) => {
         if (i === 0) {
-          return (width > 740) ? 54 : 42;
+          return (width > 740) ? 282 : 282;
         } else {
-          return (width > 740) ? 70 : 54;
+          return (width > 740) ? 300 : 300;
         }
       })
       .attr("r", (d) => circleScale(d))
       .style("fill", "none")
-      .style("stroke", "#3faa9f")
+      .style("stroke", "#ccc")
       .style("stroke-width", "2px")
 
     let keyLabels = svg.append("g").selectAll("text")
@@ -577,9 +602,9 @@ let drawMap = (data) => {
       })
       .attr("y", (d, i) => {
         if (i === 0) {
-          return (width > 740) ? 50 : 42;
+          return (width > 740) ? 282 : 282;
         } else {
-          return (width > 740) ? 72 : 56;
+          return (width > 740) ? 300 : 300;
         }
       })
       .text((d) => d)
@@ -594,18 +619,18 @@ let drawMap = (data) => {
 
     svg.append("text")
       .attr("x", width - ((width > 740) ? 60 : 50))
-      .attr("y", (width > 740) ? 12 : 12)
+      .attr("y", (width > 740) ? 240 : 240)
       .classed("map-label", true)
-      .text("Activist deaths")
+      .text("Murders")
       .style("text-anchor", "middle")
-      .style("font-weight", "bold");
+      .style("font-weight", "normal");
 
     let topFive = mapData.sort((a, b) => b["2015--count-per-country"] - a["2015--count-per-country"]).slice(0, 5)
 
     let labels = svg.append("g").selectAll("text")
       .data(topFive)
       .enter().append("text")
-      .attr("class", "map-label")
+      .attr("class", "victim-inline-country")
       .attr("x", (d) => {
         let xy = projection([d.location.lng, d.location.lat]);
         return xy[0];
@@ -614,7 +639,7 @@ let drawMap = (data) => {
         let xy = projection([d.location.lng, d.location.lat]);
         return xy[1];
       })
-      .text((d) => d.country)
+      .text((d) => d.country + " "+ d["all--count-per-country"])
       .attr("dy", "4")
       .attr("text-anchor", "middle")
 
@@ -624,7 +649,7 @@ let drawMap = (data) => {
     let buttons = select(mapEl).append("div")
       .classed("map-years", true)
       .selectAll("span")
-      .data([2015, 2016, "All years"])
+      .data(["All years", 2016, 2015])
       .enter()
       .append("span")
       .html((d) => d)
