@@ -286,7 +286,7 @@ $darkGrey: #808080;
 #allVictimsPanel {
   position:relative;
   background: transparent;
-  background-image: url(../assets/img/dots.png);
+  background-image: url('<%= path %>/assets/img/dots.png');
   background-repeat:repeat;
   margin-bottom:20px;
 }
@@ -328,7 +328,7 @@ $darkGrey: #808080;
 }
 
 .expand {
-    background-image: url(assets/img/arrow.svg);
+    background-image: url('<%= path %>/assets/img/arrow.svg');
     width:15px;
     height:15px;
     display:inline-block;

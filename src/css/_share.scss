@@ -13,14 +13,14 @@
     background-color:transparent;
 
     &[data-network='facebook'] {
-        background-image: url(assets/img/facebook.svg);
+        background-image: url('<%= path %>/assets/img/facebook.svg');
     }
 
     &[data-network='twitter'] {
-        background-image: url(assets/img/twitter.svg);
+        background-image: url('<%= path %>/assets/img/twitter.svg');
     }
 
     &[data-network='email'] {
-        background-image: url(assets/img/mail.svg);
+        background-image: url('<%= path %>/assets/img/mail.svg');
     }
 }

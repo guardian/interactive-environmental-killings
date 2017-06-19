@@ -441,7 +441,6 @@ getSpreadsheetData().then(function(data) {
     if ( document.body.clientWidth > 740) {
   drawMap(data);}
   else {
-    console.log('run');
     drawTable(data);
   }
 
@@ -569,7 +568,7 @@ let drawMap = (data) => {
         let xy = projection([d.location.lng, d.location.lat]);
         return xy[1];
       })
-      .attr("r", (d) => circleScale(d["2015--count-per-country"]))
+      .attr("r", (d) => circleScale(d["all--count-per-country"]))
       .style("fill", "none")
       .style("stroke", "#69d1ca")
       .style("stroke-width", "2px")
@@ -625,7 +624,7 @@ let drawMap = (data) => {
       .style("text-anchor", "middle")
       .style("font-weight", "normal");
 
-    let topFive = mapData.sort((a, b) => b["2015--count-per-country"] - a["2015--count-per-country"]).slice(0, 5)
+    let topFive = mapData.sort((a, b) => b["all--count-per-country"] - a["all--count-per-country"]).slice(0, 5)
 
     let labels = svg.append("g").selectAll("text")
       .data(topFive)
@@ -670,8 +669,9 @@ let drawMap = (data) => {
     function animateCircles(circles, year) {
       // this is the worst line of code I've ever written, but it works
       let topFive = (year !== "All years") ?
+
         mapData.sort((a, b) => b[year + "--count-per-country"] - a[year + "--count-per-country"]).slice(0, 5) :
-        mapData.sort((a, b) => ((Number(b["2016--count-per-country"]) + Number(b["2015--count-per-country"]))) - ((Number(a["2016--count-per-country"]) + Number(a["2015--count-per-country"])))).slice(0, 5);
+        mapData.sort((a, b) => Number(b["all--count-per-country"]) - Number(a["all--count-per-country"])).slice(0, 5);
 
       labels.data(topFive)
         .attr("x", (d) => {
@@ -682,7 +682,7 @@ let drawMap = (data) => {
           let xy = projection([d.location.lng, d.location.lat]);
           return xy[1];
         })
-        .text((d) => d.country);
+        .text((d) => {if (year !== "All years") {return d.country + " "+ d[year + "--count-per-country"]} else {return d.country + " "+ d["all--count-per-country"]}});
 
       circles
         .transition(t)
@@ -695,11 +695,10 @@ let drawMap = (data) => {
           return xy[1];
         })
         .attr("r", (d) => {
-          let count = (year !== "All years") ? d[year + "--count-per-country"] : (Number(d["2016--count-per-country"]) + Number(d["2015--count-per-country"]));
+          let count = (year !== "All years") ? d[year + "--count-per-country"] : d["all--count-per-country"];
           return circleScale(count);
         });
     }
-
     //hide victims panel on mobile
     d
 
