@@ -504,7 +504,7 @@ let drawTable = data => {
       return 0;
     }
   });
-
+  
   let tableHTML = Mustache.render(tableTemplate, {
     data: sortedData
   });

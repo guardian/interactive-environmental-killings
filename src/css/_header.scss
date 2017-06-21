@@ -23,6 +23,8 @@ $darkGrey: #808080;
 .count-header {
   background-color: #222;
   color: #222222;
+  // position:relative;
+
 }
 
 .int-byline {
@@ -59,7 +61,7 @@ $darkGrey: #808080;
   @include mq(desktop) {
      @include fs-header(4);
   }
-  color: #666666;
+  color: $highlight;
   padding-top: 8px;
   position: relative;
   z-index: 999;
@@ -90,7 +92,7 @@ $animationBaseCount: 0.9;
     font-size: 130px;
     line-height: 120px;
     height: 120px;
-    color: white;
+    color: $highlight;
     display: block;
     animation-name: fade;
     animation-duration: ($animationBaseCount * 2) + s;

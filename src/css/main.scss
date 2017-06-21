@@ -55,6 +55,24 @@ $darkGrey: #808080;
   max-width:1300px;
 }
 
+// .mainImg {
+//   position:absolute;
+//   top:0;
+//   right:0;
+//   -webkit-clip-path: polygon(63% 0, 71% 36%, 69% 46%, 66% 100%, 100% 100%, 100% 62%, 96% 21%, 98% 19%, 100% 0%);
+//   clip-path: polygon(63% 0, 71% 36%, 69% 46%, 66% 100%, 100% 100%, 100% 62%, 96% 21%, 98% 19%, 100% 0%);
+//
+//   @include mq(desktop) {
+//         background-image: url('<%= path %>/assets/img/header.png');
+//         background-size: 1300px;
+//         background-repeat: no-repeat;
+//         background-position: right 100% top 0;
+//         -webkit-clip-path: polygon(63% 0, 71% 36%, 69% 46%, 66% 100%, 100% 100%, 100% 62%, 96% 21%, 98% 19%, 100% 0%);
+//         clip-path: polygon(63% 0, 71% 36%, 69% 46%, 66% 100%, 100% 100%, 100% 62%, 96% 21%, 98% 19%, 100% 0%);
+//
+// }
+// }
+
 .featured-victim-container {
   background-color: transparent;
 }
@@ -169,6 +187,7 @@ $darkGrey: #808080;
 
   @include mq($until:leftCol){
     padding-left:3px;
+    max-width:480px;
   }
 }
 
@@ -198,7 +217,7 @@ $darkGrey: #808080;
 }
 
 .featured-victim-photo-line {
-  width: 15px;
+  width: 12px;
   height: 1px;
   background-color: #ccc;
 
@@ -354,7 +373,7 @@ $darkGrey: #808080;
 
 .victim-inline-story-title {
   font-family: $f-serif-headline;
-  font-size:22px;
+  font-size:21px;
   line-height:32px;
   color:#000;
   font-weight:900;

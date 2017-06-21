@@ -1,9 +1,9 @@
 <table class="countryTable">
   <thead>
     <th id="countryTbl">Country</th>
-    <th style="font-weight:900;color:#222;">All years</th>
+    <th style="font-weight:900;color:#222;">All years <sup>*</sup></th>
     <th style="font-weight:100;color:#767676;">2016</th>
-    <th style="font-weight:100;color:#767676;" >2015</th>
+    <th style="font-weight:100;color:#767676;">2015</th>
   </thead>
   <tbody>
     {{#data}}
@@ -16,3 +16,6 @@
     {{/data}}
   </tbody>
 </table>
+{{#hasNote}}
+<div class="int-source"><sup>*</sup>{{note}}</div>
+{{/hasNote}}
