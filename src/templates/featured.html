@@ -12,13 +12,21 @@
       {{/hasPhoto}}
 
 
-
+      {{#hasName}}
     <div class="mainCol featured">
       <div class="featured-victim-square"></div>
       <div class="featured-victim-name">{{name}}, <span style="color:#35bcaf;font-weight:600;">murdered</span> on {{date}} in {{country}}
       </div>
       <div class="featured-victim-description">{{description}}</div>
+      {{/hasName}}
 
+      {{^hasName}}
+    <div class="mainCol featured">
+      <div class="featured-victim-square"></div>
+      <div class="featured-victim-name"><span style="color:#35bcaf;font-weight:600;">murdered</span> on {{date}} in {{country}}
+      </div>
+      <div class="featured-victim-description">{{description}}</div>
+      {{/hasName}}
       {{#isProfiled}}
       <div class="featured-victim-button">
         <!-- <span class="victim-inline-story-title">{{{GuardianStoryTitle}}}</span> -->

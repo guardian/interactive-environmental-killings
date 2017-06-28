@@ -127,7 +127,7 @@ getSpreadsheetData().then(function(data) {
 
   let mostRecentVictims = data.Killings2017.filter(function(killing, i) {
     return killing.highlight == "yes"
-  }).slice(-4).sort(function(a, b) {
+  }).slice(-5).sort(function(a, b) {
     return b.date - a.date;
   }).map(function(recent, j) {
     if (recent.GuardianStoryURL !== "") {
@@ -141,6 +141,13 @@ getSpreadsheetData().then(function(data) {
     } else {
       recent.hasPhoto = false;
     }
+
+    if (recent.name !== "") {
+      recent.hasName = true;
+    } else {
+      recent.hasName = false;
+    }
+
     return recent;
   });
 
@@ -504,7 +511,6 @@ let drawTable = data => {
       return 0;
     }
   });
-  
   let tableHTML = Mustache.render(tableTemplate, {
     data: sortedData
   });
