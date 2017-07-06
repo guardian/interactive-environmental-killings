@@ -341,7 +341,7 @@ getSpreadsheetData().then(function(data) {
     .attr("class", "stepLabel")
     .attr("text-anchor", "start")
     .style("fill", "#3faa9f")
-    .text("murdered");
+    .text("deaths");
 
   labels2017.append("text")
     .attr("x", 5)
@@ -382,7 +382,7 @@ getSpreadsheetData().then(function(data) {
     .attr("class", "stepLabel")
     .attr("text-anchor", "start")
     .style("fill", "#333")
-    .text("murdered");
+    .text("deaths");
 
   labels2016.append("text")
     .attr("x", 0)
@@ -434,7 +434,7 @@ getSpreadsheetData().then(function(data) {
     .attr("class", "stepLabel")
     .attr("text-anchor", "start")
     .style("fill", "#bdbdbd")
-    .text("murdered");
+    .text("deaths");
 
   labels2015.append("text")
     .attr("x", 0)
@@ -626,7 +626,7 @@ let drawMap = (data) => {
       .attr("x", width - ((width > 740) ? 60 : 50))
       .attr("y", (width > 740) ? 240 : 240)
       .classed("map-label", true)
-      .text("Murders")
+      .text("Deaths")
       .style("text-anchor", "middle")
       .style("font-weight", "normal");
 
