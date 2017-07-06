@@ -55,6 +55,13 @@ $darkGrey: #808080;
   max-width:1300px;
 }
 
+.g-logo {
+  background-image: url('<%= path %>/assets/img/GW_logo.png');
+  position:relative;
+  background-size: 350px 60px;
+  background-repeat: no-repeat;
+}
+
 // .mainImg {
 //   position:absolute;
 //   top:0;
@@ -315,7 +322,7 @@ $darkGrey: #808080;
 
 
   @include mq($until:tablet) {
-    height:350px;
+    height:550px;
     overflow:hidden;
   }
 }
@@ -385,23 +392,21 @@ $darkGrey: #808080;
     a {
         text-decoration: none;
     }
-    border-radius: 40px;
-    @include fs-textSans(3);
-    line-height: 15px;
+    border-radius: 20px;
+    // @include fs-textSans(3);
+      // line-height: 15px;
     background-color: $highlight;
     // clear: both;
     display: inline;
-    font-weight: bold;
-    padding: 7px 10px 4px 10px;
+    // font-weight: bold;
+    padding: 5px;
     margin-left: 5px;
     color: white;
     cursor: pointer;
     svg {
         height: 16px;
         width: 16px;
-        margin-bottom: -4px;
-        margin-left: 5px;
-        margin-right: -2px;
+        margin-bottom: -3px;
         path {
             fill: white;
         }
@@ -449,9 +454,16 @@ $darkGrey: #808080;
     display:block;
   }
 
+  .line2014 {
+    fill:none;
+    stroke:#c2c2c4;
+    stroke-width:2px;
+    shape-rendering: crispEdges;
+  }
+
   .line2015 {
     fill:none;
-    stroke:#b3b3b4;
+    stroke:#9b9b9b;
     stroke-width:2px;
     shape-rendering: crispEdges;
   }
@@ -523,10 +535,10 @@ $darkGrey: #808080;
 }
 
 .g-world-map {
-  margin-top:-200px;
+  margin-top:-150px;
 
   @include mq($from:desktop, $until:wide){
-    margin-top:-200px;
+    margin-top:-150px;
   }
 
   @include mq($until:desktop){

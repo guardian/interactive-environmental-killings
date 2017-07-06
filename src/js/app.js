@@ -52,56 +52,69 @@ var count4 = document.querySelector(".count-header__count__number:nth-of-type(4)
 var months = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
 var killingsPast = [{
   month: "Jan",
+  victims2014:13,
   victims2015: 6,
   victims2016: 16
 }, {
   month: "Feb",
+  victims2014:22,
   victims2015: 24,
   victims2016: 33
 }, {
   month: "March",
+  victims2014:29,
   victims2015: 34,
   victims2016: 52
 }, {
   month: "April",
+  victims2014:39,
   victims2015: 54,
   victims2016: 82
 }, {
   month: "May",
+  victims2014:49,
   victims2015: 79,
   victims2016: 93
 }, {
   month: "June",
+  victims2014:55,
   victims2015: 99,
   victims2016: 110
 }, {
   month: "July",
+  victims2014:64,
   victims2015: 105,
   victims2016: 124
 }, {
   month: "Aug",
+  victims2014:77,
   victims2015: 121,
   victims2016: 140
 }, {
   month: "Sep",
+  victims2014:92,
   victims2015: 144,
   victims2016: 157
 }, {
   month: "Oct",
+  victims2014:106,
   victims2015: 163,
   victims2016: 172
 }, {
   month: "Nov",
+  victims2014:111,
   victims2015: 174,
   victims2016: 188
 }, {
   month: "Dec",
+  victims2014:116,
   victims2015: 185,
   victims2016: 200
 }]
 var killings2017 = [];
 var killings2016 = [];
 var killings2015 = [];
+var killings2014 = [];
 
 // Fill sections with spreadsheet data
 getSpreadsheetData().then(function(data) {
@@ -209,6 +222,15 @@ getSpreadsheetData().then(function(data) {
   var yScale = scaleLinear().domain([0, maxOffset]).range([stepHeight, stepMarginTop]);
 
   //sets up line
+  var line2014 = line()
+    .x(function(d) {
+      return xScale(d.month);
+    })
+    .y(function(d) {
+      return yScale(d.victims2014);
+    })
+    .curve(curveStepAfter);
+
   var line2015 = line()
     .x(function(d) {
       return xScale(d.month);
@@ -252,6 +274,7 @@ getSpreadsheetData().then(function(data) {
   killingsPast.forEach(function(byYear) {
     killings2016.push(byYear.victims2016);
     killings2015.push(byYear.victims2015);
+    killings2014.push(byYear.victims2014);
   })
 
 
@@ -287,6 +310,11 @@ getSpreadsheetData().then(function(data) {
     )
 
   //adds the killingsline
+  svg.append("path")
+    .data([killingsPast])
+    .attr("class", "line2014")
+    .attr("d", line2014);
+
   svg.append("path")
     .data([killingsPast])
     .attr("class", "line2015")
@@ -364,7 +392,7 @@ getSpreadsheetData().then(function(data) {
   //2016
   var labels2016 = svg.append("g")
     .attr("transform", function(line2016) {
-      return "translate(" + (stepWidth + 10) + "," + (yScale(killings2016[killings2016.length - 1]) - 30) + ")"
+      return "translate(" + (stepWidth + 10) + "," + (yScale(killings2016[killings2016.length - 1]) - 10) + ")"
     })
 
 
@@ -376,17 +404,17 @@ getSpreadsheetData().then(function(data) {
     .style("fill", "#333")
     .text(killings2016[killings2016.length - 1]);
 
-  labels2016.append("text")
-    .attr("x", 0)
-    .attr("y", 16)
-    .attr("class", "stepLabel")
-    .attr("text-anchor", "start")
-    .style("fill", "#333")
-    .text("deaths");
+  // labels2016.append("text")
+  //   .attr("x", 0)
+  //   .attr("y", 16)
+  //   .attr("class", "stepLabel")
+  //   .attr("text-anchor", "start")
+  //   .style("fill", "#333")
+  //   .text("deaths");
 
   labels2016.append("text")
     .attr("x", 0)
-    .attr("y", 32)
+    .attr("y", 16)
     .attr("class", "stepLabel")
     .attr("text-anchor", "start")
     .style("fill", "#333")
@@ -401,7 +429,7 @@ getSpreadsheetData().then(function(data) {
     })
     .attr("width", 7)
     .attr("height", 7)
-    .style("fill", "#bdbdbd");
+    .style("fill", "#9b9b9b");
 
   svg.append("rect")
     .attr("class", "lineEnd")
@@ -416,7 +444,7 @@ getSpreadsheetData().then(function(data) {
   //2015
   var labels2015 = svg.append("g")
     .attr("transform", function(line2015) {
-      return "translate(" + (stepWidth + 10) + "," + (yScale(killings2015[killings2015.length - 1]) + 10) + ")"
+      return "translate(" + (stepWidth + 10) + "," + (yScale(killings2015[killings2015.length - 1]) + 20) + ")"
     })
 
 
@@ -425,7 +453,7 @@ getSpreadsheetData().then(function(data) {
     .attr("y", 0)
     .attr("class", "stepNumber")
     .attr("text-anchor", "start")
-    .style("fill", "#bdbdbd")
+    .style("fill", "#9b9b9b")
     .text(killings2015[killings2015.length - 1]);
 
   labels2015.append("text")
@@ -433,16 +461,54 @@ getSpreadsheetData().then(function(data) {
     .attr("y", 16)
     .attr("class", "stepLabel")
     .attr("text-anchor", "start")
-    .style("fill", "#bdbdbd")
-    .text("deaths");
-
-  labels2015.append("text")
-    .attr("x", 0)
-    .attr("y", 32)
-    .attr("class", "stepLabel")
-    .attr("text-anchor", "start")
-    .style("fill", "#bdbdbd")
+    .style("fill", "#9b9b9b")
     .text("in 2015");
+
+
+    //2014
+    var labels2014 = svg.append("g")
+      .attr("transform", function(line2014) {
+        return "translate(" + (stepWidth + 10) + "," + (yScale(killings2014[killings2014.length - 1])) + ")"
+      })
+
+
+    labels2014.append("text")
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("class", "stepNumber")
+      .attr("text-anchor", "start")
+      .style("fill", "#c2c2c4")
+      .text(killings2014[killings2014.length - 1]);
+
+    labels2014.append("text")
+      .attr("x", 0)
+      .attr("y", 16)
+      .attr("class", "stepLabel")
+      .attr("text-anchor", "start")
+      .style("fill", "#c2c2c4")
+      .text("in 2014");
+
+
+    svg.append("rect")
+      .attr("class", "lineEnd")
+      .attr("x", (stepWidth - 4))
+      .attr("y", function(line2014) {
+        return yScale(killings2014[killings2014.length - 1])
+      })
+      .attr("width", 7)
+      .attr("height", 7)
+      .style("fill", "#c2c2c4");
+
+    svg.append("rect")
+      .attr("class", "lineEnd")
+      .attr("x", (stepWidth - 4))
+      .attr("y", function(line2014) {
+        return yScale(killings2014[killings2014.length - 1])
+      })
+      .attr("width", 7)
+      .attr("height", 7)
+      .style("fill", "c2c2c4");
+
 
 
     if ( document.body.clientWidth > 740) {
@@ -476,7 +542,7 @@ getSpreadsheetData().then(function(data) {
     })
     .attr("width", 7)
     .attr("height", 7)
-    .style("fill", "#bdbdbd");
+    .style("fill", "#9b9b9b");
 
   svg.append("rect")
     .attr("class", "lineEnd")

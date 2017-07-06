@@ -48,6 +48,18 @@ $darkGrey: #808080;
   padding-top: 15px;
 }
 
+.int-sources a {
+  text-decoration: none;
+  border-bottom: 1px dotted $darkGrey;
+  color: $darkGrey;
+}
+
+.int-sources a:hover {
+  text-decoration: none;
+  border-bottom: 1px dotted #222;
+  color:#222;
+}
+
 .count-header__tag {
   @include fs-header(2);
   margin-top: 30px;
@@ -205,4 +217,17 @@ $animationBaseCount: 0.9;
   font-weight: 200;
   color: $darkGrey;
   max-width: 620px;
+}
+
+.count-header__intro a {
+  text-decoration: none;
+  border-bottom: 1px dotted $darkGrey;
+  color: $darkGrey;
+}
+
+.count-header__intro a:hover {
+  text-decoration: none;
+  border-bottom: 1px dotted #767676;
+  color:#767676;
+  cursor: pointer;
 }
