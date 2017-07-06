@@ -127,9 +127,9 @@ getSpreadsheetData().then(function(data) {
 
   let mostRecentVictims = data.Killings2017.filter(function(killing, i) {
     return killing.highlight == "yes"
-  }).slice(-5).sort(function(a, b) {
+  }).sort(function(a, b) {
     return b.date - a.date;
-  }).map(function(recent, j) {
+  }).slice(0,5).map(function(recent, j) {
     if (recent.GuardianStoryURL !== "") {
       recent.isProfiled = true;
     } else {
@@ -555,7 +555,7 @@ let drawMap = (data) => {
       .enter().insert("path")
       .attr("class", "country")
       .attr("d", drawPath)
-      .style("fill", "#fff")
+      .style("fill", "#f6f6f6")
       .style("stroke", "#dcdcdc");
 
     let t = transition()
