@@ -56,10 +56,10 @@ $darkGrey: #808080;
 }
 
 .g-logo {
-  background-image: url('<%= path %>/assets/img/GW_logo.png');
-  position:relative;
-  background-size: 350px 60px;
-  background-repeat: no-repeat;
+  background: url('<%= path %>/assets/img/GW_logo.png') left top no-repeat;
+  background-size: 175px 30px;
+  height:30px;
+  padding-top:50px;
 }
 
 // .mainImg {
