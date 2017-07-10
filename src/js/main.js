@@ -19,7 +19,7 @@ console.log(windowWidth);
 console.log(headWrapperHeight);
 // headerEl.style.background = 'url(<%= path %>/assets/img/figures/' + bgImages[Math.floor(Math.random() * bgImages.length)] + ') no-repeat left 200px bottom 0 /410px';
 if (windowWidth >= 1300) {
-  headerEl.style.background = 'url(<%= path %>/assets/img/figures/' + bgImages[Math.floor(Math.random() * bgImages.length)] + ') no-repeat left 200px bottom 0 /410px';
+  headerEl.style.background = 'url(<%= path %>/assets/img/figures/' + bgImages[Math.floor(Math.random() * bgImages.length)] + ') no-repeat left 230px bottom 0 /410px';
 }
 // else if (windowWidth>1140){
 //   headerEl.style.background = 'url(<%= path %>/assets/img/figures/' + bgImages[Math.floor(Math.random() * bgImages.length)] + ') no-repeat left 150px bottom 0 /410px';
