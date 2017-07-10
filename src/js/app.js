@@ -118,7 +118,6 @@ var killings2014 = [];
 
 // Fill sections with spreadsheet data
 getSpreadsheetData().then(function(data) {
-
   //return count
   var total = data.Killings2017.length;
   // console.log(total);
@@ -564,6 +563,8 @@ getSpreadsheetData().then(function(data) {
     .attr("width", 8)
     .attr("height", 8)
     .style("fill", "#3faa9f");
+
+  drawGreenSquares(total);
 })
 
 let drawTable = data => {
@@ -776,5 +777,64 @@ let drawMap = (data) => {
     d
 
   });
+
+}
+
+function drawGreenSquares(count) {
+  if(document.body.clientWidth < 760) {
+    return;
+  }
+  let containerEl = document.querySelector(".green-squares");
+  let containerWidth = containerEl.clientWidth;
+  let containerHeight = containerEl.clientHeight;
+
+  let container = select(".green-squares")
+    .append("svg")
+    .attr("width", containerWidth)
+    .attr("height", containerHeight);
+
+  let area = containerHeight * containerWidth;
+
+  let squareSideLength = Math.floor(Math.sqrt(area/count));
+
+  let rowCount = containerHeight / squareSideLength;
+
+  squareSideLength = containerHeight / Math.ceil(rowCount)
+  let columnCount = containerWidth / squareSideLength;
+  
+  // container.selectAll("div")
+  //   .data(new Array(count))
+  //   .enter()
+  //   .append("rect")
+  //     .attr("x", (d, i) => )
+  //     .attr("y", (d, i) => )
+  //     .attr("height", squareSideLength)
+  //     .attr("width", squareSideLength);
+  let counter = 0;
+
+  for(let column = 0; column < columnCount; column++) {
+    for(let row = 0; row < rowCount; row++) {
+      if(counter < count) {
+        let animationTiming = Math.random()*3000;
+        if(animationTiming < 1500) {
+          animationTiming = animationTiming*2;
+        }
+        container.append("rect")
+          .attr("x", () => column*squareSideLength)
+          .attr("y", () => row*squareSideLength)
+          .attr("height", squareSideLength-1)
+          .attr("width", squareSideLength-1)
+          .style("opacity", 0)
+            .transition()
+            .delay(animationTiming)
+            .duration(1000)
+            .style("opacity", 1);
+
+        counter++;
+      }
+    }
+
+  }
+
 
 }
