@@ -34,7 +34,7 @@ $white: #ffffff;
 .count-header {
   background-color: #1a1a1a;
   color: #222222;
-  // position:relative;
+  position:relative;
 }
 
 .int-byline {
@@ -196,4 +196,32 @@ $white: #ffffff;
   border-bottom: 1px dotted #767676;
   color: #767676;
   cursor: pointer;
+}
+
+.green-squares {
+  height: 100%;
+  // add other breakpoints
+  @include mq(tablet) {
+    width: calc((100vw - 760px)/2 + 180px);
+  }
+  @include mq(desktop) {
+    width: calc((100vw - 980px)/2 + 360px);
+  }
+  @include mq(leftCol) {
+    width: calc((100vw - 1140px)/2 + 600px);
+  }
+  @include mq(wide) {
+    width: calc((100vw - 1300px)/2 + 540px);
+  }
+  top: 0;
+  position: absolute;
+  line-height: 0;
+  opacity: 0.3;
+  svg {
+    overflow: visible;
+  }
+  rect {
+    fill: #69d1ca;
+    // border: 1px solid transparent
+  }
 }
