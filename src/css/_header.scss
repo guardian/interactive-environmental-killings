@@ -3,10 +3,11 @@
 @import "share";
 $highlight: #69d1ca;
 $darkGrey: #808080;
+$white: #ffffff;
 
 .header-share-container {
-  padding-top: 5px;
-  padding-bottom: 20px;
+  // padding-top: 5px;
+  padding-bottom: 10px;
   display: block;
   max-width: 620px;
   float: left;
@@ -14,23 +15,32 @@ $darkGrey: #808080;
 
 #featured,
 #headerCol {
-  margin-top: 30px;
-  // border-bottom:1px solid #CCC;
   position: relative;
-  margin-bottom: 15px;
+  display: inline-block;
+}
+
+#featured {
+  margin-top: 30px;
+}
+
+#headerCol {
+  // background-color: #1a1a1a;
+  // background-image: url('<%= path %>/assets/img/figures/figure1.png');
+  // background-repeat: no-repeat;
+  // background-position: left 220px bottom 0px;
+  // background-size: 410px;
 }
 
 .count-header {
-  background-color: #222;
+  background-color: #1a1a1a;
   color: #222222;
   // position:relative;
-
 }
 
 .int-byline {
   @include fs-textSans(3);
-  font-weight: 900;
-  color: $darkGrey;
+  font-weight: 400;
+  color: #222;
   font-size: 14px;
   max-width: 620px;
   display: block;
@@ -56,23 +66,34 @@ $darkGrey: #808080;
 .int-sources a:hover {
   text-decoration: none;
   border-bottom: 1px dotted #222;
-  color:#222;
+  color: #222;
+}
+
+.header-text-wrapper {
+  margin-top: 100px;
+  margin-left: 240px;
+  display: block;
+  @include mq($from:mobile, $until:tablet) {
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+  @include mq($from:tablet, $until:desktop) {
+    margin-left: 150px;
+    margin-top: 20px;
+  }
 }
 
 .count-header__tag {
   @include fs-header(2);
+  font-size: 24px;
   margin-top: 30px;
-  margin-left: 10px;
   @include mq(desktop) {
-    margin-left: 20px;
-  }
-  @include mq(tablet) {
      @include fs-header(3);
   }
-  @include mq(desktop) {
-     @include fs-header(4);
+  @include mq($until:desktop) {
+     @include fs-header(2);
   }
-  color: $highlight;
+  color: $white;
   padding-top: 8px;
   position: relative;
   z-index: 999;
@@ -80,153 +101,99 @@ $darkGrey: #808080;
   display: block;
 
   &:hover {
-    text-decoration: underline;
-  }
-}
-$animationBaseCount: 0.9;
-
-.count-header__count__number-wrapper {
-  display: inline-block;
-  position: relative;
-  animation-name: wrapperMove;
-  animation-duration: ($animationBaseCount * 3) + s;
-  animation-delay: $animationBaseCount + s;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-in-out;
-  transform: translateY(336px);
-  margin-top:-358px;
-  margin-bottom: -15px;
-  overflow:hidden;
-
-  .count-header__count__number {
-    @include fs-header(2);
-    font-size: 130px;
-    line-height: 120px;
-    height: 120px;
     color: $highlight;
-    display: block;
-    animation-name: fade;
-    animation-duration: ($animationBaseCount * 2) + s;
-    animation-fill-mode: forwards;
-    animation-timing-function: ease-in-out;
-    opacity: 0;
-  }
-
-  .count-header__count__number:nth-of-type(1) {
-    animation-delay: $animationBaseCount + s;
-    animation-name: firstFade;
-    animation-duration: $animationBaseCount + s;
-    opacity: 0.1;
-  }
-
-  .count-header__count__number:nth-of-type(2) {
-    animation-delay: $animationBaseCount + s;
-    animation-name: fadeOne;
-  }
-
-  .count-header__count__number:nth-of-type(3) {
-    animation-delay: ($animationBaseCount * 2) + s;
-    animation-name: fadeTwo;
-  }
-
-  .count-header__count__number:nth-of-type(4) {
-    animation-delay: ($animationBaseCount * 3) + s;
-    animation-name: lastFade;
-    animation-duration: $animationBaseCount + s;
   }
 }
 
-@keyframes wrapperMove {
-    0% {
-        transform: translateY(336px);
-    }
-    33% {
-        transform: translateY(224px);
-    }
-    66% {
-        transform: translateY(112px);
-    }
-    100% {
-        transform: translateY(0px);
-    }
-}
-
-@keyframes firstFade {
-  0% {
-    opacity: 0.1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-@keyframes fadeOne {
-  0% {
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 0.35;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-@keyframes fadeTwo {
-  0% {
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 0.7;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-@keyframes lastFade {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-.counter-text {
+.count-header__count__number {
   @include fs-header(2);
-  font-size: 34px;
-  line-height: 40px;
+  font-size: 52px;
+  line-height: 58px;
+  color: $highlight;
+  display: inline-block;
+  min-height: 116px;
+  @include mq($until:desktop) {
+    font-size: 42px;
+    line-height: 50px;
+  }
+}
+
+.count-wrapper {
+  margin-left: 311px;
+  position: relative;
+  max-width: 435px;
+  @include mq($from:leftCol,$until:wide) {
+    margin-left: 250px;
+  }
+  @include mq($from:desktop, $until:leftCol) {
+    margin-left: 150px;
+  }
+  @include mq($from:mobile, $until:tablet) {
+    margin-left: 0;
+  }
+  @include mq($from:tablet, $until:desktop) {
+    margin-left: 70px;
+  }
+}
+
+.count-text-wrapper {
+  display: block;
+  margin: 50px 0 150px 435px;
+  max-width: 435px;
+  position: relative;
+  @include mq($from:leftCol, $until:wide) {
+    margin: 50px 0 150px 350px;
+  }
+  @include mq($from:desktop, $until:leftCol) {
+    margin: 50px 0 150px 250px;
+  }
+  @include mq($from:mobile, $until:tablet) {
+    margin: 0 0 150px;
+  }
+  @include mq($from:tablet, $until:desktop) {
+    margin: 30px 0 100px 180px;
+  }
+}
+
+.count-text {
+  @include fs-header(2);
+  font-size: 38px;
+  line-height: 48px;
   color: $darkGrey;
   font-weight: 200;
+  @include mq($until:desktop) {
+    font-size: 30px;
+    line-height: 38px;
+  }
 }
 
 .count-header__intro {
-  @include fs-headline(2);
+  // @include fs-headlne(2);
+  // font-family: $f-serif-headline;
   position: relative;
   display: block;
   float: left;
-  margin-top: 15px;
+  margin-top: 10px;
   margin-bottom: 20px;
   font-size: 18px;
   line-height: 28px;
-  font-weight: 200;
-  color: $darkGrey;
+  font-weight: 100;
+  // color: $darkGrey;
+  color: #1a1a1a;
   max-width: 620px;
 }
 
 .count-header__intro a {
   text-decoration: none;
-  border-bottom: 1px dotted $darkGrey;
-  color: $darkGrey;
+  // border-bottom: 1px dotted $darkGrey;
+  border-bottom: 1px dotted #222;
+  // color: $darkGrey;
+  color: #222;
 }
 
 .count-header__intro a:hover {
   text-decoration: none;
   border-bottom: 1px dotted #767676;
-  color:#767676;
+  color: #767676;
   cursor: pointer;
 }

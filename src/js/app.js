@@ -45,10 +45,10 @@ import {
 } from 'd3-geo'
 
 var expandList = document.querySelector(".read-more");
-var count1 = document.querySelector(".count-header__count__number:nth-of-type(1)");
-var count2 = document.querySelector(".count-header__count__number:nth-of-type(2)");
-var count3 = document.querySelector(".count-header__count__number:nth-of-type(3)");
-var count4 = document.querySelector(".count-header__count__number:nth-of-type(4)");
+var count1 = document.querySelector(".count-header__count__number");
+// var count2 = document.querySelector(".count-header__count__number:nth-of-type(2)");
+// var count3 = document.querySelector(".count-header__count__number:nth-of-type(3)");
+// var count4 = document.querySelector(".count-header__count__number:nth-of-type(4)");
 var months = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
 var killingsPast = [{
   month: "Jan",
@@ -125,18 +125,19 @@ getSpreadsheetData().then(function(data) {
   // count.innerHTML = total
 
   //animate count
-  count1.innerHTML = [total - 3].map((num) => {
-    return (num < 10) ? "0" + num : num;
+  // count1.innerHTML = [total - 3].map((num) => {
+  //   return (num < 10) ? "0" + num : num;
+  // });
+  // count2.innerHTML = [total - 2].map((num) => {
+  //   return (num < 10) ? "0" + num : num;
+  // });
+  // count3.innerHTML = [total - 1].map((num) => {
+  //   return (num < 10) ? "0" + num : num;
+  // });
+  count1.innerHTML = [total].map((num) => {
+    return ((num < 10) ? "0" + num : num) + " environmental defenders";
   });
-  count2.innerHTML = [total - 2].map((num) => {
-    return (num < 10) ? "0" + num : num;
-  });
-  count3.innerHTML = [total - 1].map((num) => {
-    return (num < 10) ? "0" + num : num;
-  });
-  count4.innerHTML = [total].map((num) => {
-    return (num < 10) ? "0" + num : num;
-  });
+  count1.style.visibility = "visible";
 
   let mostRecentVictims = data.Killings2017.filter(function(killing, i) {
     return killing.highlight == "yes"

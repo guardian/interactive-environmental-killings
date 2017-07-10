@@ -1,6 +1,6 @@
 .interactive-share {
-    height: 30px;
-    width: 30px;
+    height: 32px;
+    width: 32px;
     border-radius: 34px;
     display: inline-block;
     border: none;
@@ -9,7 +9,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: 26px;
-    border:1px solid #555555;
+    border:1px solid #333;
     background-color:transparent;
 
     &[data-network='facebook'] {
@@ -23,4 +23,9 @@
     &[data-network='email'] {
         background-image: url('<%= path %>/assets/img/mail.svg');
     }
+}
+
+.interactive-share:hover {
+  cursor:pointer;
+  opacity:0.9;
 }

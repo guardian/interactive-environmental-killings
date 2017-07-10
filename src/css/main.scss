@@ -51,7 +51,7 @@ $darkGrey: #808080;
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
-  background-color: #222222;
+  background-color: #1a1a1a;
   max-width:1300px;
 }
 
@@ -99,33 +99,39 @@ $darkGrey: #808080;
 	}
 }
 
-.leftColPhoto {
+
+.rightColPhoto {
+    float:right;
+    // width:100px;
+    // position:relative;
+    // float:left;
+    // display:inline-block;
+
+
   @include mq($from:wide) {
-    width:220px;
-    position:absolute;
-    top:10px
+    // width:220px;
+    // top:20px;
+    // left:0;
+
   }
 
 
   @include mq($from:desktop, $until: leftCol){
-		width:140px;
-    position:absolute;
+		// width:140px;
 	}
 	@include mq($from:leftCol){
-		width:220px;
-    position:absolute;
+		// width:220px;
 	}
 
   @include mq($from:tablet, $until: desktop){
-    float:right;
-    right:250px;
-    position:absolute;
+    // float:right;
+    // right:250px;
 	}
 
   @include mq($from:mobile, $until:tablet){
-    position:relative;
-    display:block;
-    margin-bottom:10px;
+    // position:relative;
+    // display:block;
+    // margin-bottom:10px;
 
   }
 
@@ -181,7 +187,7 @@ $darkGrey: #808080;
 
 }
 
-.featured {margin-bottom:25px;}
+.featured {margin-bottom:25px;padding-left:0;}
 
 .featured-victim-name, .victim-inline-country {
   font-family: $f-sans-serif-text;
@@ -263,14 +269,18 @@ $darkGrey: #808080;
   border: 1px solid #ccc;
   filter: grayscale(100%) brightness(120%);
   -webkit-filter: grayscale(100%) brightness(120%);
-  position:relative;
-  float:left;
-  display:inline;
+  // position:relative;
+  // left:0;
+  // display:inline;
 
 @include mq($from:wide){
-  left:-webkit-calc(100% - 90px);
-  left:-moz-calc(100% - 90px);
-  left:calc(100% - 90px);
+  left:20px;
+  // left:-webkit-calc(100% - 90px);
+  // left:-moz-calc(100% - 90px);
+  // left:calc(100% - 90px);
+  // right:-webkit-calc(50% - 90px);
+  // right:-moz-calc(100% - 90px);
+  // right:calc(100% - 90px);
 }
 
   @include mq($from:leftCol, $until:wide){

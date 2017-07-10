@@ -7,6 +7,7 @@ import fs from 'fs'
 import xr from 'xr'
 
 export async function render() {
+
     let data = cleanData(await rp({
         uri: "https://interactive.guim.co.uk/docsdata-test/1_uvmDf7swVvodXkwYAda7Nqw8igKjr5jyrwclrdaMpI.json",
         json: true
@@ -35,6 +36,9 @@ export async function render() {
         }});
 
     return `${headerHTML}${moduleHTML}`;
+    // var bgImages = ['figure1.png', 'figure2.png', 'figure3.png'];
+    // document.querySelector("#headerCol").style.backgroundImage = "url(<%= path %>/assets/img/figures/' + bgImages[Math.floor(Math.random() * bgImages.length)] + ') no-repeat left 200px bottom 0 410px";
+
 }
 
 

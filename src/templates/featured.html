@@ -1,38 +1,45 @@
+ {{#people}}
+<div class="featured-victim-container">
 
-  {{#people}}
-  <div class="featured-victim-container">
-
-      {{#hasPhoto}}
+  <!-- {{#hasPhoto}}
       <div class="leftColPhoto">
       <div class="featured-victim-photo">
         <img style="width:90px;height:90px;" src="{{photo}}"/>
       </div>
       <div class="featured-victim-photo-line"></div>
         </div>
-      {{/hasPhoto}}
+      {{/hasPhoto}} -->
 
-
-      {{#hasName}}
+  {{#hasPhoto}}
+  <div class="mainCol featured">
+    <div class="featured-victim-name">{{name}}, <span style="color:#35bcaf;font-weight:600;">killed</span> on {{date}} in {{country}}
+    </div>
+    <div class="featured-victim-description">{{description}}</div>
+  </div>
+  <div class="rightColPhoto">
+    <div class="featured-victim-photo">
+      <img style="width:90px;height:90px;" src="{{photo}}" />
+    </div>
+    <div class="featured-victim-photo-line"></div>
+  </div>
+  {{/hasPhoto}} {{#hasName}}
+  <div class="mainCol featured">
+    <!-- <div class="featured-victim-square"></div> -->
+    <div class="featured-victim-name">{{name}}, <span style="color:#35bcaf;font-weight:600;">killed</span> on {{date}} in {{country}}
+    </div>
+    <div class="featured-victim-description">{{description}}</div>
+    {{/hasName}} {{^hasName}}
     <div class="mainCol featured">
-      <div class="featured-victim-square"></div>
-      <div class="featured-victim-name">{{name}}, <span style="color:#35bcaf;font-weight:600;">killed</span> on {{date}} in {{country}}
-      </div>
-      <div class="featured-victim-description">{{description}}</div>
-      {{/hasName}}
-
-      {{^hasName}}
-    <div class="mainCol featured">
-      <div class="featured-victim-square"></div>
+      <!-- <div class="featured-victim-square"></div> -->
       <div class="featured-victim-name"><span style="color:#35bcaf;font-weight:600;">killed</span> on {{date}} in {{country}}
       </div>
       <div class="featured-victim-description">{{description}}</div>
-      {{/hasName}}
-      {{#isProfiled}}
+      {{/hasName}} {{#isProfiled}}
       <div class="featured-victim-button">
         <!-- <span class="victim-inline-story-title">{{{GuardianStoryTitle}}}</span> -->
         <a href="{{GuardianStoryURL}}" class="g-button-featured">Read profile<svg width="23" height="23" viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg"><title></title><desc></desc><g fill="none"><path d="M23 11.5L12.704 21.6l-.96-.96L19.8 12H0v-2h19.8L11.745.96l.96-.96L23 10.5v1" class="icon"></path><path d="M11 32.313C-.75 32.313-10.31 22.753-10.31 11c0-11.75 9.56-21.312 21.313-21.312 11.752 0 21.313 9.56 21.313 21.312S22.753 32.313 11 32.313M11-11c-12.15 0-22 9.85-22 22s9.85 22 22 22 22-9.85 22-22-9.85-22-22-22" fill="none"></path></g></svg></a>
       </div>
-        {{/isProfiled}}
+      {{/isProfiled}}
     </div>
   </div>
-    {{/people}}
+  {{/people}}
