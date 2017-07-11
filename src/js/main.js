@@ -11,7 +11,7 @@ var el = document.createElement('script');
 el.src = '<%= path %>/app.js';
 document.body.appendChild(el);
 
-var bgImages = ['figure1.png', 'figure2.png', 'figure3.png'];
+var bgImages = ['figure1.png', 'figure2.png', 'figure3.png', 'figure4.png', 'figure5.png'];
 var headerEl = document.querySelector("#headerCol");
 var windowWidth = document.body.clientWidth;
 var headWrapperHeight = document.querySelector(".header-text-wrapper").offsetHeight;
