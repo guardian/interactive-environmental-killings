@@ -12,8 +12,8 @@ el.src = '<%= path %>/app.js';
 document.body.appendChild(el);
 
 var bgImages = [{url: "figure0.png", credit: "Photograph: Tim Russo/AP", caption: "Berta Cáceres, a Honduran human rights and environment activist who was fighting to stop the construction of a hydroelectric dam on the Gualcarque River, was killed in March 2016", position1300:"230", position1140:"150", size:"450", sizeSmall:"320", verticalSize:"320", imgHeight:"300"},
-{url: "figure1.png", credit: "Photograph: Reuters", caption: "Jose Claudio Ribeiro da Silva and his wife Maria, defenders of the Amazon rainforest who constantly reported illegal loggers and ranchers, were killed in an ambush in May 2011", position1300:"0", position1140:"0",size:"600", sizeSmall:"400", verticalSize:"320", imgHeight:"230"},
-{url: "figure2.png", credit: "Photograph: Karapatan", caption: "Renato Anglao , an indigenous rights defender, was gunned down in February 2017", position1300:"230",position1140:"150", size: "450", sizeSmall:"320", verticalSize:"320", imgHeight:"300"},
+{url: "figure1.png", credit: "Photograph: Reuters", caption: "Jose Claudio Ribeiro da Silva and his wife Maria, defenders of the Amazon rainforest who constantly reported illegal loggers and ranchers, were killed in an ambush in May 2011", position1300:"0", position1140:"0",size:"600", sizeSmall:"320", verticalSize:"320", imgHeight:"230"},
+{url: "figure2.png", credit: "Photograph: Karapatan", caption: "Renato Anglao, an indigenous rights defender, was gunned down in February 2017", position1300:"230",position1140:"150", size: "430", sizeSmall:"320", verticalSize:"320", imgHeight:"300"},
 {url: "figure3.png", credit: "Photograph: Tim Russo/AP", caption: "Berta Cáceres, a Honduran human rights and environment activist who was fighting to stop the construction of a hydroelectric dam on the Gualcarque River, was killed in March 2016", position1300:"130", position1140:"50", size:"390", sizeSmall:"260", verticalSize:"320", imgHeight:"380"}];
 var headerEl = document.querySelector("#headerCol");
 var imgURL = [];

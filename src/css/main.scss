@@ -2,7 +2,7 @@
 @import "fonts";
 @import "header";
 @import "share";
-$highlight: #69d1ca;
+$highlight:  #66A998;
 $lightGrey: #e6e6e6;
 $darkerGreen: #3faa9f;
 $darkGrey: #808080;
@@ -169,8 +169,8 @@ $darkGrey: #808080;
 
 .strongHead {
   font-family:$f-serif-headline;
-  font-weight:900;
-  font-size:28px;
+  font-weight:100;
+  font-size:40px;
   line-height:1.2;
   color:#222;
   display:block;
@@ -190,14 +190,44 @@ $darkGrey: #808080;
 
 .featured {margin-bottom:25px;padding-left:0;}
 
-.featured-victim-name, .victim-inline-country {
+.featured-victim-name {
   font-family: $f-sans-serif-text;
   font-size: 14px;
   line-height: 1.5;
   color:#333;
+  padding-bottom:3px;
+  padding-top:3px;
+  margin-bottom:5px;
+  border-top:1px solid #cecece;
+  border-bottom:1px solid #cecece;
+  // text-transform: uppercase;
+
+  @include mq($until:leftCol){
+    padding-left:3px;
+    max-width:480px;
+  }
+}
+
+.victim-inline-country {
+  font-size: 22px;
+  line-height:32px;
+  color:$highlight;
+  font-weight:100;
+
+  @include mq($until:leftCol) {
+    padding-left:3px;
+    max-width:480px;
+
+}
+}
+
+.map-country {
+  font-family: $f-sans-serif-text;
+  font-size: 13px;
+  line-height: 1.5;
+  color:#333;
   padding-bottom:5px;
   text-transform: uppercase;
-  font-size:13px;
 
   @include mq($until:leftCol){
     padding-left:3px;
@@ -308,13 +338,6 @@ $darkGrey: #808080;
   }
 }
 
-.victim-inline-separator {
-  width: 7px;
-  height: 7px;
-  background: $darkerGreen;
-  display: inline-block;
-  margin:0 4px 1px 5px;
-}
 
 .victim-inline:last-child .victim-inline-separator {
   display:none;
@@ -322,8 +345,8 @@ $darkGrey: #808080;
 
 #allVictimsPanel {
   position:relative;
-  background: transparent;
-  background-image: url('<%= path %>/assets/img/dots.png');
+  background: #eaeaea;
+  // background-image: url('<%= path %>/assets/img/dots.png');
   background-repeat:repeat;
   margin-bottom:20px;
 }
@@ -376,17 +399,21 @@ $darkGrey: #808080;
 
 
 
-.victim-inline, .victim-inline-name, .victim-inline-country, .victim-inline-description, .victim-inline-story, .victim-inline-story, .victim-inline-button {
+.victim-inline, .victim-inline-name, .victim-inline-separator, .victim-inline-country, .victim-inline-description, .victim-inline-story, .victim-inline-story, .victim-inline-button {
   display:inline;
   position:relative;
 }
 
-.victim-inline-name {
+.victim-inline-name, .victim-inline-separator {
   font-family: $f-serif-headline;
   font-size: 22px;
-  line-height: 32px;
+  line-height: 34px;
   color:#333;
   font-weight:100;
+}
+
+.victim-inline-separator {
+  color:#bdbdbd;
 }
 
 .victim-inline-story-title {

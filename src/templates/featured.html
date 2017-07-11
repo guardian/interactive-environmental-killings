@@ -12,7 +12,7 @@
 
   <!-- {{#hasPhoto}}
   <div class="mainCol featured">
-    <div class="featured-victim-name">{{name}}, <span style="color:#35bcaf;font-weight:600;">killed</span> on {{date}} in {{country}}
+    <div class="featured-victim-name">{{name}}, <span style="color: #66A998;font-weight:600;">killed</span> on {{date}} in {{country}}
     </div>
     <div class="featured-victim-description">{{description}}</div>
   </div>
@@ -26,14 +26,14 @@
   {{#hasName}}
   <div class="mainCol featured">
     <!-- <div class="featured-victim-square"></div> -->
-    <div class="featured-victim-name">{{name}}, <span style="color:#35bcaf;font-weight:600;">killed</span> on {{date}} in {{country}}
+    <div class="featured-victim-name"><span style="color: #66A998;font-weight:600;">Killed on {{date}} in {{country}}</span>
     </div>
-    <div class="featured-victim-description">{{description}}</div>
+    <div class="featured-victim-description">{{name}}, {{description}}</div>
     {{/hasName}}
     {{^hasName}}
     <div class="mainCol featured">
       <!-- <div class="featured-victim-square"></div> -->
-      <div class="featured-victim-name"><span style="color:#35bcaf;font-weight:600;">killed</span> on {{date}} in {{country}}
+      <div class="featured-victim-name"><span style="color: #66A998;font-weight:600;">Killed on {{date}} in {{country}}</span>
       </div>
       <div class="featured-victim-description">{{description}}</div>
       {{/hasName}}

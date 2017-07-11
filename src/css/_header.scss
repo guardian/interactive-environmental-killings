@@ -1,7 +1,7 @@
 @import "mq";
 @import "fonts";
 @import "share";
-$highlight: #69d1ca;
+$highlight: #66A998;
 $darkGrey: #808080;
 $white: #ffffff;
 
@@ -107,8 +107,8 @@ $white: #ffffff;
 
 .count-header__count__number {
   @include fs-header(2);
-  font-size: 40px;
-  line-height: 48px;
+  font-size: 45px;
+  line-height: 45px;
   color: $highlight;
   display: inline-block;
   // min-height: 116px;
@@ -138,32 +138,32 @@ $white: #ffffff;
 
 .count-text-wrapper {
   display: block;
-  margin: 10px 0 150px 435px;
+  margin: 0px 0 150px 375px;
   max-width: 435px;
   position: relative;
   @include mq($from:leftCol, $until:wide) {
-    margin: 10px 0 150px 350px;
+    margin: 0px 0 150px 315px;
   }
   @include mq($from:desktop, $until:leftCol) {
-    margin: 10px 0 150px 250px;
+    margin: 0px 0 150px 215px;
   }
   @include mq($from:mobile, $until:tablet) {
     margin: 0 0 150px;
   }
   @include mq($from:tablet, $until:desktop) {
-    margin: 10px 0 100px 180px;
+    margin: 0px 0 100px 125px;
   }
 }
 
 .count-text {
   @include fs-header(2);
-  font-size: 38px;
-  line-height: 48px;
+  font-size: 45px;
+  line-height: 45px;
   color: $darkGrey;
   font-weight: 200;
   @include mq($until:desktop) {
-    font-size: 34px;
-    line-height: 42px;
+    font-size: 36px;
+    line-height: 36px;
   }
 }
 
@@ -198,6 +198,13 @@ $white: #ffffff;
   cursor: pointer;
 }
 
+.intro-small-text {
+  font-size:20px;
+  line-height:20px;
+  color:$darkGrey;
+  font-weight: 900;
+}
+
 .green-squares {
   height: 100%;
   // add other breakpoints
@@ -216,12 +223,12 @@ $white: #ffffff;
   top: 0;
   position: absolute;
   line-height: 0;
-  opacity: 0.3;
+  opacity: 1;
   svg {
     overflow: visible;
   }
   rect {
-    fill: #69d1ca;
+    fill:  #66A998;
     // border: 1px solid transparent
   }
 }

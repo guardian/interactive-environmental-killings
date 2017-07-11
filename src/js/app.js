@@ -134,7 +134,7 @@ getSpreadsheetData().then(function(data) {
   //   return (num < 10) ? "0" + num : num;
   // });
   count1.innerHTML = [total].map((num) => {
-    return ((num < 10) ? "0" + num : num) + " environmental defenders";
+    return ((num < 10) ? "0" + num : num) + " environmental";
   });
   count1.style.visibility = "visible";
 
@@ -360,7 +360,7 @@ getSpreadsheetData().then(function(data) {
     .attr("y", 0)
     .attr("class", "stepNumber")
     .attr("text-anchor", "start")
-    .style("fill", "#3faa9f")
+    .style("fill", "#66A998")
     .text(killingsDataByYear[killingsDataByYear.length - 1].cumulative2017);
 
   labels2017.append("text")
@@ -368,7 +368,7 @@ getSpreadsheetData().then(function(data) {
     .attr("y", 16)
     .attr("class", "stepLabel")
     .attr("text-anchor", "start")
-    .style("fill", "#3faa9f")
+    .style("fill", "#66A998")
     .text("deaths");
 
   labels2017.append("text")
@@ -376,7 +376,7 @@ getSpreadsheetData().then(function(data) {
     .attr("y", 32)
     .attr("class", "stepLabel")
     .attr("text-anchor", "start")
-    .style("fill", "#3faa9f")
+    .style("fill", "#66A998")
     .text("in 2017");
 
   svg.append("rect")
@@ -387,7 +387,7 @@ getSpreadsheetData().then(function(data) {
     })
     .attr("width", 8)
     .attr("height", 8)
-    .style("fill", "#3faa9f");
+    .style("fill", "#66A998");
 
   //2016
   var labels2016 = svg.append("g")
@@ -703,7 +703,7 @@ let drawMap = (data) => {
     let labels = svg.append("g").selectAll("text")
       .data(topFive)
       .enter().append("text")
-      .attr("class", "victim-inline-country")
+      .attr("class", "map-country")
       .attr("x", (d) => {
         let xy = projection([d.location.lng, d.location.lat]);
         return xy[0];
@@ -801,7 +801,7 @@ function drawGreenSquares(count) {
 
   squareSideLength = containerHeight / Math.ceil(rowCount)
   let columnCount = containerWidth / squareSideLength;
-  
+
   // container.selectAll("div")
   //   .data(new Array(count))
   //   .enter()
