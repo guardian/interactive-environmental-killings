@@ -545,10 +545,10 @@ $darkGrey: #808080;
 }
 
 .g-world-map {
-  margin-top:-150px;
+  margin-top:-200px;
 
   @include mq($from:desktop, $until:wide){
-    margin-top:-150px;
+    margin-top:-200px;
   }
 
   @include mq($until:desktop){

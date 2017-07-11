@@ -41,8 +41,8 @@ import {
   axisBottom
 } from 'd3-axis'
 import {
-  geoMercator
-} from 'd3-geo'
+  geoPatterson
+} from 'd3-geo-projection'
 
 var expandList = document.querySelector(".read-more");
 var count1 = document.querySelector(".count-header__count__number");
@@ -596,12 +596,12 @@ let drawMap = (data) => {
     let world = data.data;
 
     var width = mapEl.clientWidth,
-      height = width * (3.5 / 5);
+      height = width * (3.4 / 5);
 
     var countries = topojson.feature(world, world.objects.countries).features,
       neighbors = topojson.neighbors(world.objects.countries.geometries);
 
-    var projection = geoMercator()
+    var projection = geoPatterson()
       .fitSize([width, width], topojson.feature(world, world.objects.countries));
     // .scale(170)
     // .translate([width / 2, height / 2])
@@ -722,7 +722,7 @@ let drawMap = (data) => {
     let buttons = select(mapEl).append("div")
       .classed("map-years", true)
       .selectAll("span")
-      .data(["All years", 2016, 2015])
+      .data(["All years", 2017, 2016, 2015])
       .enter()
       .append("span")
       .html((d) => d)
