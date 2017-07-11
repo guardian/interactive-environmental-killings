@@ -644,7 +644,7 @@ let drawMap = (data) => {
       })
       .attr("r", (d) => circleScale(d["all--count-per-country"]))
       .style("fill", "none")
-      .style("stroke", "#69d1ca")
+      .style("stroke", "#66A998")
       .style("stroke-width", "2px")
 
     let keyCircles = svg.append("g").selectAll("circle")
