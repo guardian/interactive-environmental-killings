@@ -10,16 +10,18 @@ $grey: #eaeaea;
 .e-content__related {
     background-color:#e6e6e6;
     max-width: 1300px;
+
     margin: 0 auto;
-    margin-bottom: 100px;
+    padding-bottom: 100px;
     @include mq($until: wide) {
-        max-width: 1140px;
+        width:100%;
     }
     @include mq($until: leftCol) {
-        max-width: 960px;
+        padding-left:10px;
     }
     @include mq($until: desktop) {
-        max-width: 720px;
+      padding-left:10px;
+        // max-width: 720px;
     }
     @include mq($until: tablet) {
         padding: 0;
@@ -35,7 +37,7 @@ $grey: #eaeaea;
         display: block;
         float: left;
         color: $black;
-        padding-left: 20px;
+        padding-left: 10px;
         margin-top:20px;
         @include mq($until: wide) {
             font-size: 20px;
@@ -43,10 +45,12 @@ $grey: #eaeaea;
         @include mq($until: leftCol) {
             float: none;
             margin: 0 0 5px 0px;
+            padding-left:0;
         }
         @include mq($until: tablet) {
             margin-left: 3%;
             font-size: 22px;
+            padding-left:0;
         }
     }
     &-content {
@@ -54,12 +58,13 @@ $grey: #eaeaea;
         border-top:1px solid #fff;
         padding-top:20px;
         margin: 0;
-        margin-left: 220px;
-        width: 940px;
+        margin-left: 240px;
+        max-width: 940px;
         font-size: 0;
         display: block;
         @include mq($until: wide) {
             margin-left: 160px;
+            width:calc(100%-900px);
         }
         @include mq($until: leftCol) {
             margin-left: -10px;

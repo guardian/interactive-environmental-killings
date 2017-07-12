@@ -1,6 +1,6 @@
 import xr from 'xr'
 
-var spreadsheetUrl = 'https://interactive.guim.co.uk/docsdata-test/1Rd4H846JCPOKo8YB5jEEDvryryIA6lr1-9KyQwQSK8U.json';
+var spreadsheetUrl = 'https://interactive.guim.co.uk/docsdata/1Rd4H846JCPOKo8YB5jEEDvryryIA6lr1-9KyQwQSK8U.json';
 
 export function getSpreadsheetData() {
 

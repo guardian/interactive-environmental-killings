@@ -311,7 +311,7 @@ figure {
 //     right:-15px;
 //   }
 
-  
+
 
 //   @include mq($from:desktop, $until:wide){
 //   display:none;
@@ -393,7 +393,8 @@ figure {
     background-repeat: repeat;
     margin-bottom: 20px;
     .button {
-        background-color: $highlight;
+        color:#767676;
+        background-color: #dcdcdc;
         border: none;
         p {
             font-size: 15px;
@@ -402,7 +403,7 @@ figure {
         }
         &:hover {
           background-color: #fff;
-          color: $highlight;
+          color: #767676;
         }
     }
 }

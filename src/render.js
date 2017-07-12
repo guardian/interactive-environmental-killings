@@ -14,7 +14,7 @@ export async function render() {
         json: true
     }));
 
-    let mapData = (await rp({uri: "https://interactive.guim.co.uk/docsdata-test/1r0XEHvbz08gz1_762VnDjayXm7n8ICTI_Ja8fwenric.json", json: true})).sheets.KillingsMap;
+    let mapData = (await rp({uri: "https://interactive.guim.co.uk/docsdata/1Rd4H846JCPOKo8YB5jEEDvryryIA6lr1-9KyQwQSK8U.json", json: true})).sheets.KillingsMap;
 
     let cleanedMapData = await cleanMapData(mapData);
     // let count = Number(data.header.count);
@@ -58,7 +58,7 @@ async function cleanMapData(data) {
     for (let country of data) {
         let locationData = (savedLocations.find((d) => d.country === country.country))
             ? savedLocations.find((d) => d.country === country.country).location
-            : (await rp({uri: "https://maps.googleapis.com/maps/api/geocode/json?address=" + country.country + "&key=AIzaSyB8xlBqUbeOjiVqDrp9IGXdHz1byqRF-d8", json: true})).results[0].geometry.location;
+            : (await rp({uri: "https://maps.googleapis.com/maps/api/geocode/json?address=" + country.country + "&key=AIzaSyCISdl2EekuUvxOY7pWPUsud2mfH5kDbiI", json: true})).results[0].geometry.location;
 
         country.location = locationData;
     }
