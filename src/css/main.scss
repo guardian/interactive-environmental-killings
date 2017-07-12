@@ -2,6 +2,7 @@
 @import "fonts";
 @import "header";
 @import "share";
+@import "mobile";
 $highlight:  #66A998;
 $lightGrey: #e6e6e6;
 $darkerGreen: #3faa9f;
@@ -18,6 +19,10 @@ $darkGrey: #808080;
     margin: 0 !important;
     background-color: #dddddd;
     color:#222;
+}
+
+figure {
+  margin:0;
 }
 
 .main {
@@ -161,10 +166,10 @@ $darkGrey: #808080;
 }
 
 .module-copy {
-  font-family:$f-serif-headline;
+  // font-family:$f-serif-headline;
   font-size:18px;
   line-height:28px;
-  font-weight:400;
+  // font-weight:400;
 }
 
 .strongHead {

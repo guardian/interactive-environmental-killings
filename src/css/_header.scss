@@ -29,6 +29,8 @@ $white: #ffffff;
   // background-repeat: no-repeat;
   // background-position: left 220px bottom 0px;
   // background-size: 410px;
+  background-repeat: no-repeat;
+
 }
 
 .count-header {
@@ -42,6 +44,17 @@ $white: #ffffff;
   font-weight: 400;
   color: #222;
   font-size: 14px;
+  max-width: 620px;
+  display: block;
+}
+
+.int-caption {
+  @include fs-textSans(3);
+  font-size:12px;
+  line-height:16px;
+  font-weight: 400;
+  color: #767676;
+  font-size: 13px;
   max-width: 620px;
   display: block;
 }
@@ -205,32 +218,6 @@ $white: #ffffff;
   color:$darkGrey;
   font-weight: 900;
 }
-
-
-.caption .inline-information {
-    font-size: 0.75rem;
-    line-height: 1rem;
-    font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
-    color: #767676;
-    margin-right: 0.125rem;
-    margin-top: -0.1875rem;
-    width: 0.875rem;
-    height: 0.875rem;
-    background-color: #bdbdbd;
-  }
-
-.rounded-icon {
-    -webkit-border-radius: 62.5rem;
-    border-radius: 62.5rem;
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-  }
-
-.caption .inline-information .inline-information__svg {
-    width: 0.25rem;
-    fill: #ffffff;
-  }
 
 .green-squares {
   height: 100%;
