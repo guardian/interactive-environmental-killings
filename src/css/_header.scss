@@ -29,9 +29,20 @@ $white: #ffffff;
   // background-repeat: no-repeat;
   // background-position: left 220px bottom 0px;
   // background-size: 410px;
+  // animation: animatedBackground 2s 2s ease forwards;
+  // opacity: 0;
   background-repeat: no-repeat;
 
 }
+
+// @keyframes animatedBackground {
+//     0% {
+//         opacity: 0;
+//     }
+//     100% {
+//         opacity: 1;
+//     }
+// }
 
 .count-header {
   background-color: #1a1a1a;
@@ -43,7 +54,8 @@ $white: #ffffff;
   @include fs-textSans(3);
   font-weight: 400;
   color: #222;
-  font-size: 14px;
+  font-size: 12px;
+  line-height: 16px;
   max-width: 620px;
   display: block;
 }
@@ -68,7 +80,6 @@ $white: #ffffff;
   max-width: 620px;
   width: 100%;
   display: block;
-  padding-top: 15px;
 }
 
 .int-sources a {
@@ -85,14 +96,13 @@ $white: #ffffff;
 
 .header-text-wrapper {
   margin-top: 100px;
-  margin-left: 240px;
+  margin-left: 280px;
   display: block;
   @include mq($from:mobile, $until:tablet) {
-    margin-left: 20px;
-    margin-top: 20px;
+    margin: 10px 10px 0;
   }
   @include mq($from:tablet, $until:desktop) {
-    margin-left: 150px;
+    margin-left: 180px;
     margin-top: 20px;
   }
 }
@@ -106,6 +116,10 @@ $white: #ffffff;
   }
   @include mq($until:desktop) {
      @include fs-header(2);
+     margin-top: 0;
+  }
+  @include mq($until:tablet) {
+     margin-top: 0;
   }
   color: $white;
   padding-top: 8px;
@@ -126,9 +140,13 @@ $white: #ffffff;
   color: $highlight;
   display: inline-block;
   // min-height: 116px;
+   @include mq($until:wide) {
+    font-size: 40px;
+    line-height: 40px;
+  }
   @include mq($until:desktop) {
-    font-size: 36px;
-    line-height: 42px;
+    font-size: 31px;
+    line-height: 36px;
   }
 }
 
@@ -136,6 +154,12 @@ $white: #ffffff;
   margin-left: 311px;
   position: relative;
   max-width: 435px;
+  @include mq($until:wide) {
+    max-width: 380px;
+  }
+   @include mq($until:tablet) {
+    max-width: 100%;
+  }
   @include mq($from:leftCol,$until:wide) {
     margin-left: 250px;
   }
@@ -155,14 +179,20 @@ $white: #ffffff;
   margin: 0px 0 150px 375px;
   max-width: 435px;
   position: relative;
+  @include mq($until:wide) {
+    max-width: 380px;
+  }
+  @include mq($until:tablet) {
+    max-width: 100%;
+  }
   @include mq($from:leftCol, $until:wide) {
     margin: 0px 0 150px 315px;
   }
   @include mq($from:desktop, $until:leftCol) {
-    margin: 0px 0 150px 215px;
+    margin: -2px 0 150px 215px;
   }
   @include mq($from:mobile, $until:tablet) {
-    margin: 0 0 150px;
+    margin: -2px 0 150px 0;
   }
   @include mq($from:tablet, $until:desktop) {
     margin: 0px 0 100px 125px;
@@ -175,8 +205,12 @@ $white: #ffffff;
   line-height: 45px;
   color: $darkGrey;
   font-weight: 200;
+  @include mq($until:wide) {
+    font-size: 40px;
+    line-height: 40px;
+  }
   @include mq($until:desktop) {
-    font-size: 36px;
+    font-size: 31px;
     line-height: 36px;
   }
 }
@@ -195,6 +229,12 @@ $white: #ffffff;
   // color: $darkGrey;
   color: #1a1a1a;
   max-width: 620px;
+  @include mq($until:desktop) {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 24px;
+  }
 }
 
 .count-header__intro a {
@@ -214,10 +254,43 @@ $white: #ffffff;
 
 .intro-small-text {
   font-size:20px;
-  line-height:20px;
+  line-height:24px;
   color:$darkGrey;
-  font-weight: 900;
+  font-weight: lighter;
+  max-width: 350px;
+  @include mq($until:tablet) {
+    font-size:16px;
+    line-height:20px;
+    font-weight: bolder;
 }
+}
+
+
+.caption .inline-information {
+    font-size: 12px;
+    line-height: 14px;
+    font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    color: #767676;
+    margin-right: 0.125rem;
+    margin-top: -0.1875rem;
+    width: 0.875rem;
+    height: 0.875rem;
+    background-color: #bdbdbd;
+  }
+
+.rounded-icon {
+    -webkit-border-radius: 62.5rem;
+    border-radius: 62.5rem;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+  }
+
+.caption .inline-information .inline-information__svg {
+    width: 0.25rem;
+    fill: #ffffff;
+  }
+
 
 .green-squares {
   height: 100%;
