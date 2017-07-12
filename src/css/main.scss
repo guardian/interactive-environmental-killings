@@ -39,7 +39,7 @@ $darkGrey: #808080;
   font-weight:900;
   font-size:18px;
   line-height:28px;
-  color: $highlight;
+  color: #333;
    @include mq($until:desktop) {
     font-size: 16px;
     line-height: 24px;
