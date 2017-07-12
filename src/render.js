@@ -1,6 +1,7 @@
 import headerTemplate from './src/templates/header.html!text'
 import moduleTemplate from './src/templates/module.html!text'
 import featuredTemplate from './src/templates/featured.html!text'
+import relatedTemplate from './src/templates/related.html!text'
 import rp from 'request-promise'
 import Mustache from 'mustache'
 import fs from 'fs'
@@ -18,7 +19,7 @@ export async function render() {
     let cleanedMapData = await cleanMapData(mapData);
     // let count = Number(data.header.count);
     // var count = document.querySelector(".count-header__count__number");
-    console.log(JSON.stringify(cleanedMapData));
+    // console.log(JSON.stringify(cleanedMapData));
     // data.header.counterNumbers = [count - 3, count - 2, count - 1, count].map((num) => {
     //         return (num < 10) ? "0" + num : num;
     //     });
@@ -34,11 +35,10 @@ export async function render() {
             let text = this.copy.replace(/\t\r/g,"").replace(/\n\s*\n/g, '</p><p>');
             return `<p>${text}</p>`
         }});
+        // console.log(data.links)
+    let relatedHTML = Mustache.render(relatedTemplate, data.links);
 
-    return `${headerHTML}${moduleHTML}`;
-    // var bgImages = ['figure1.png', 'figure2.png', 'figure3.png'];
-    // document.querySelector("#headerCol").style.backgroundImage = "url(<%= path %>/assets/img/figures/' + bgImages[Math.floor(Math.random() * bgImages.length)] + ') no-repeat left 200px bottom 0 410px";
-
+    return `${headerHTML}${moduleHTML}${relatedHTML}`;
 }
 
 

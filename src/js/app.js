@@ -4,6 +4,7 @@ import {
 import featuredTemplate from '../templates/featured.html'
 import allVictimsTemplate from '../templates/allvictims.html'
 import tableTemplate from '../templates/tableTemplate.html'
+import relatedTemplate from '../templates/related.html'
 import Mustache from 'mustache'
 import xr from 'xr'
 import * as topojson from 'topojson-client'
