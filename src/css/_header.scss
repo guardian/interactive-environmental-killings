@@ -50,7 +50,8 @@ $white: #ffffff;
   @include fs-textSans(3);
   font-weight: 400;
   color: $darkGrey;
-  font-size: 13px;
+  font-size: 14px;
+  line-height:20px;
   max-width: 620px;
   width: 100%;
   display: block;
@@ -204,6 +205,32 @@ $white: #ffffff;
   color:$darkGrey;
   font-weight: 900;
 }
+
+
+.caption .inline-information {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    color: #767676;
+    margin-right: 0.125rem;
+    margin-top: -0.1875rem;
+    width: 0.875rem;
+    height: 0.875rem;
+    background-color: #bdbdbd;
+  }
+
+.rounded-icon {
+    -webkit-border-radius: 62.5rem;
+    border-radius: 62.5rem;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+  }
+
+.caption .inline-information .inline-information__svg {
+    width: 0.25rem;
+    fill: #ffffff;
+  }
 
 .green-squares {
   height: 100%;

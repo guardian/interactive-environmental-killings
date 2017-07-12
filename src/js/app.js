@@ -120,19 +120,6 @@ var killings2014 = [];
 getSpreadsheetData().then(function(data) {
   //return count
   var total = data.Killings2017.length;
-  // console.log(total);
-  // count.innerHTML = total
-
-  //animate count
-  // count1.innerHTML = [total - 3].map((num) => {
-  //   return (num < 10) ? "0" + num : num;
-  // });
-  // count2.innerHTML = [total - 2].map((num) => {
-  //   return (num < 10) ? "0" + num : num;
-  // });
-  // count3.innerHTML = [total - 1].map((num) => {
-  //   return (num < 10) ? "0" + num : num;
-  // });
   count1.innerHTML = [total].map((num) => {
     return ((num < 10) ? "0" + num : num) + " environmental";
   });
@@ -176,12 +163,9 @@ getSpreadsheetData().then(function(data) {
     return vct;
   });
 
-  console.log(restVictims)
-
   let profileVictims = data.Killings2017.filter(function(killing, i) {
     return killing.GuardianStoryURL !== ""
   });
-  // console.log(profileVictims);
 
   let featuredHTML = Mustache.render(featuredTemplate, {
     "people": mostRecentVictims,
@@ -195,7 +179,6 @@ getSpreadsheetData().then(function(data) {
   document.querySelector("#all-victims").innerHTML = allVictimsHTML;
   var listHeight = document.querySelector("#all-victims").offsetHeight;
   var allVictimsHeight = document.querySelector("#allVictimsPanel").offsetHeight;
-  console.log(listHeight);
 
   // populate step-graphic with cumulative monthly killings
 
@@ -582,8 +565,6 @@ let drawTable = data => {
   let tableHTML = Mustache.render(tableTemplate, {
     data: sortedData
   });
-
-  console.log(tableHTML)
 
   tableEl.innerHTML = tableHTML;
 }

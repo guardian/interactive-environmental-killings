@@ -40,12 +40,15 @@ bgImages.forEach(function(photo, i) {
 
 var windowWidth = document.body.clientWidth;
 var headWrapperHeight = document.querySelector(".header-text-wrapper").offsetHeight;
-console.log(windowWidth);
-console.log(headWrapperHeight);
+// console.log(windowWidth);
+// console.log(headWrapperHeight);
 headerEl.style.background = 'url(<%= path %>/assets/img/figures/' + imgURL[Math.floor(Math.random() * bgImages.length)] + ') no-repeat';
 var loadedURL = headerEl.style.backgroundImage;
 var urlString = loadedURL.substring(loadedURL.length-6,loadedURL.length-7);
-console.log(urlString);
+// console.log(urlString);
+var captionContainerContent = document.querySelector("#captionContainer");
+captionContainerContent.innerHTML = "" + captions[urlString] + '. ' + credits[urlString] + "";
+console.log(captionContainerContent);
 // headerEl.style.background = 'url(<%= path %>/assets/img/figures/' + bgImages[Math.floor(Math.random() * bgImages.length)] + ') no-repeat left 200px bottom 0 /410px';
 if (windowWidth >= 1300) {
   headerEl.style.backgroundPosition = 'left ' + positions1300[urlString] + 'px bottom 0';
