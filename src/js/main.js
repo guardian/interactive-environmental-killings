@@ -42,29 +42,29 @@ var windowWidth = document.body.clientWidth;
 var headWrapperHeight = document.querySelector(".header-text-wrapper").offsetHeight;
 // console.log(windowWidth);
 // console.log(headWrapperHeight);
-headerEl.style.background = 'url(<%= path %>/assets/img/figures/' + imgURL[Math.floor(Math.random() * bgImages.length)] + ') no-repeat';
-var loadedURL = headerEl.style.backgroundImage;
-var urlString = loadedURL.substring(loadedURL.length-6,loadedURL.length-7);
+var randomImg = bgImages[Math.floor(Math.random() * bgImages.length)];
+headerEl.style.backgroundImage = 'url(<%= path %>/assets/img/figures/' + randomImg.url + ')';
+var urlString = ''
 // console.log(urlString);
 var captionContainerContent = document.querySelector("#captionContainer");
-captionContainerContent.innerHTML = "" + captions[urlString] + '. ' + credits[urlString] + "";
-console.log(captionContainerContent);
+captionContainerContent.innerHTML = "" + randomImg['caption'] + '. ' + randomImg['credit'] + "";
+// console.log(captionContainerContent);
 // headerEl.style.background = 'url(<%= path %>/assets/img/figures/' + bgImages[Math.floor(Math.random() * bgImages.length)] + ') no-repeat left 200px bottom 0 /410px';
 if (windowWidth >= 1300) {
-  headerEl.style.backgroundPosition = 'left ' + positions1300[urlString] + 'px bottom 0';
-  headerEl.style.backgroundSize = sizes[urlString] +'px';
+  headerEl.style.backgroundPosition = parseInt(randomImg['position1300']) + 'px bottom';
+  headerEl.style.backgroundSize = parseInt(randomImg['size']) +'px';
 }
 else if (windowWidth>=1140){
-  headerEl.style.backgroundPosition = 'left ' + positions1140[urlString] + 'px bottom 0';
-  headerEl.style.backgroundSize = sizes[urlString] +'px';
+  headerEl.style.backgroundPosition = parseInt(randomImg['position1140']) + 'px bottom';
+  headerEl.style.backgroundSize = parseInt(randomImg['size']) +'px';
 }
 else if (windowWidth >= 740){
-  headerEl.style.backgroundPosition = 'left 0 bottom 0';
-  headerEl.style.backgroundSize = sizesSmall[urlString] + 'px';
+  headerEl.style.backgroundPosition = `left bottom`;
+  headerEl.style.backgroundSize = parseInt(randomImg['sizeSmall']) + 'px';
 }
 else {
-headerEl.style.backgroundPosition = 'left 10px top ' + (parseInt(headWrapperHeight) + 50) + 'px';
-headerEl.style.backgroundSize = verticalSizes[urlString] + 'px';
-var minHeight = parseInt(headWrapperHeight) + parseInt(imgHeights[urlString]);
+headerEl.style.backgroundPosition = `10px bottom`;
+headerEl.style.backgroundSize = '300px';
+var minHeight = parseInt(headWrapperHeight) + parseInt(randomImg['imgHeight']);
 headerEl.style.minHeight = minHeight + 'px';
 }

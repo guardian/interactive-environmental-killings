@@ -31,6 +31,8 @@ $white: #ffffff;
   // background-size: 410px;
   // animation: animatedBackground 2s 2s ease forwards;
   // opacity: 0;
+  background-repeat: no-repeat;
+
 }
 
 // @keyframes animatedBackground {
@@ -54,6 +56,17 @@ $white: #ffffff;
   color: #222;
   font-size: 12px;
   line-height: 16px;
+  max-width: 620px;
+  display: block;
+}
+
+.int-caption {
+  @include fs-textSans(3);
+  font-size:12px;
+  line-height:16px;
+  font-weight: 400;
+  color: #767676;
+  font-size: 13px;
   max-width: 620px;
   display: block;
 }
@@ -277,6 +290,7 @@ $white: #ffffff;
     width: 0.25rem;
     fill: #ffffff;
   }
+
 
 .green-squares {
   height: 100%;
