@@ -1,6 +1,6 @@
 import shares from './share'
 
-let shareFn = shares('//write-title', '//write-project-url', '');
+let shareFn = shares('The defenders: see all the environmental defenders killed this year', 'https://gu.com/p/6jmx8', '');
 
 [].slice.apply(document.querySelectorAll('.interactive-share')).forEach(shareEl => {
     var network = shareEl.getAttribute('data-network');
@@ -17,40 +17,16 @@ var bgImages = [{url: "figure0.png", credit: "Photograph: Tim Russo/AP", caption
 ];
 
 var headerEl = document.querySelector("#headerCol");
-// var imgURL = [];
-// var captions = [];
-// var credits = [];
-// var positions1300 = [];
-// var positions1140 = [];
-// var sizes = [];
-// var sizesSmall =[];
-// var verticalSizes = [];
-// var imgHeights = [];
-//
-// bgImages.forEach(function(photo, i) {
-//   imgURL.push(photo.url);
-//   captions.push(photo.caption);
-//   credits.push(photo.credit);
-//   positions1300.push(photo.position1300);
-//   positions1140.push(photo.position1140);
-//   sizes.push(photo.size);
-//   sizesSmall.push(photo.sizeSmall);
-//   verticalSizes.push(photo.verticalSize);
-//   imgHeights.push(photo.imgHeight);
-// });
 
 var windowWidth = document.body.clientWidth;
 var headWrapperHeight = document.querySelector(".header-text-wrapper").offsetHeight;
-// console.log(windowWidth);
-// console.log(headWrapperHeight);
+
 var randomImg = bgImages[Math.floor(Math.random() * bgImages.length)];
 headerEl.style.backgroundImage = 'url(<%= path %>/assets/img/figures/' + randomImg.url + ')';
 var urlString = ''
-// console.log(urlString);
 var captionContainerContent = document.querySelector("#captionContainer");
 captionContainerContent.innerHTML = "" + randomImg['caption'] + '. ' + randomImg['credit'] + "";
-// console.log(captionContainerContent);
-// headerEl.style.background = 'url(<%= path %>/assets/img/figures/' + bgImages[Math.floor(Math.random() * bgImages.length)] + ') no-repeat left 200px bottom 0 /410px';
+
 if (windowWidth >= 1300) {
   headerEl.style.backgroundPosition = parseInt(randomImg['position1300']) + 'px bottom';
   headerEl.style.backgroundSize = parseInt(randomImg['size']) +'px';

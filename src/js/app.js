@@ -45,6 +45,8 @@ import {
   geoPatterson
 } from 'd3-geo-projection'
 
+// var shareFn = share('The defenders: see all the environmental defenders killed this year','https://gu.com/p/6jmx8')
+
 var expandList = document.querySelector(".read-more");
 var count1 = document.querySelector(".count-header__count__number");
 // var count2 = document.querySelector(".count-header__count__number:nth-of-type(2)");
@@ -117,6 +119,8 @@ var killings2016 = [];
 var killings2015 = [];
 var killings2014 = [];
 
+
+
 // Fill sections with spreadsheet data
 getSpreadsheetData().then(function(data) {
   //return count
@@ -151,10 +155,6 @@ getSpreadsheetData().then(function(data) {
 
     return recent;
   });
-
-
-  // let restVictims = data.Killings2017.filter(d => mostRecentVictims.indexOf(d) === -1);
-  // console.log(restVictims);
 
   let restVictims = data.Killings2017.filter(d => mostRecentVictims.indexOf(d) === -1).map(function(vct, i) {
     if (vct.GuardianStoryURL !== "")
@@ -388,14 +388,6 @@ getSpreadsheetData().then(function(data) {
     .style("fill", "#333")
     .text(killings2016[killings2016.length - 1]);
 
-  // labels2016.append("text")
-  //   .attr("x", 0)
-  //   .attr("y", 16)
-  //   .attr("class", "stepLabel")
-  //   .attr("text-anchor", "start")
-  //   .style("fill", "#333")
-  //   .text("deaths");
-
   labels2016.append("text")
     .attr("x", 0)
     .attr("y", 16)
@@ -508,15 +500,6 @@ getSpreadsheetData().then(function(data) {
   });
 
   var translateWidth = document.getElementsByClassName("line2017")[0].getBBox().width;
-
-  //   svg.append("text")
-  //       .attr("transform", function(line2017) {
-  //           return "translate(" + (translateWidth+20) + "," + (yScale(killingsDataByYear[killingsDataByYear.length-1].cumulative2017 )) + ")"
-  // })
-  //       .attr("class","stepLabel")
-  //   		.attr("text-anchor", "start")
-  //   		.style("fill", "#3faa9f")
-  //   		.text(killingsDataByYear[killingsDataByYear.length-1].cumulative2017 + " murdered in 2017");
 
   svg.append("rect")
     .attr("class", "lineEnd")
