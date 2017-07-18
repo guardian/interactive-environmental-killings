@@ -45,13 +45,8 @@ import {
   geoPatterson
 } from 'd3-geo-projection'
 
-// var shareFn = share('The defenders: see all the environmental defenders killed this year','https://gu.com/p/6jmx8')
-
 var expandList = document.querySelector(".read-more");
 var count1 = document.querySelector(".count-header__count__number");
-// var count2 = document.querySelector(".count-header__count__number:nth-of-type(2)");
-// var count3 = document.querySelector(".count-header__count__number:nth-of-type(3)");
-// var count4 = document.querySelector(".count-header__count__number:nth-of-type(4)");
 var months = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
 var killingsPast = [{
   month: "Jan",
@@ -141,6 +136,12 @@ getSpreadsheetData().then(function(data) {
       recent.isProfiled = false;
     }
 
+    if (recent.note !== "") {
+      recent.hasNote = true;
+    } else {
+      recent.hasNote = false;
+    }
+
     if (recent.photo !== "") {
       recent.hasPhoto = true;
     } else {
@@ -156,7 +157,8 @@ getSpreadsheetData().then(function(data) {
     return recent;
   });
 
-  let restVictims = data.Killings2017.filter(d => mostRecentVictims.indexOf(d) === -1).map(function(vct, i) {
+  let restVictims = data.Killings2017.filter(d => d.highlight !== "yes" || d.notes !=="").map(function(vct, i) {
+  // let restVictims = data.Killings2017.filter(d => mostRecentVictims.indexOf(d) === -1 || d.hasNote===false).map(function(vct, i) {
     if (vct.GuardianStoryURL !== "")
       vct.isProfiled = true;
     else
@@ -249,9 +251,6 @@ getSpreadsheetData().then(function(data) {
     .attr('height', stepHeight)
     .append("g")
     .attr("transform", "translate(" + stepMarginLeft + ",-20)");
-  // .attr("transform", "translate(" + stepMarginLeft*1.5 + "," + "-" + stepMarginTop*1.5 + ")");
-  //get the data
-  //format the data
 
   var killingsDataByYear = cumulativeKillings.slice();
 
@@ -317,15 +316,6 @@ getSpreadsheetData().then(function(data) {
   //add labels
 
   var translateWidth = document.getElementsByClassName("line2017")[0].getBBox().width;
-
-  //   svg.append("text")
-  //       .attr("transform", function(line2017) {
-  //           return "translate(" + (translateWidth+20) + "," + (yScale(killingsDataByYear[killingsDataByYear.length-1].cumulative2017 )) + ")"
-  // })
-  //       .attr("class","stepLabel")
-  //   		.attr("text-anchor", "start")
-  //   		.style("fill", "#3faa9f")
-  //   		.text(killingsDataByYear[killingsDataByYear.length-1].cumulative2017 + " murdered in 2017");
   var labels2017 = svg.append("g")
     .attr("transform", function(line2017) {
       return "translate(" + (translateWidth) + "," + (yScale(killingsDataByYear[killingsDataByYear.length - 1].cumulative2017) - 40) + ")"
@@ -494,7 +484,6 @@ getSpreadsheetData().then(function(data) {
   }
 
   expandList.addEventListener("click", function(d) {
-    // listHeight = allVictimsHeight;
     document.querySelector("#all-victims").style.height = "initial";
     document.querySelector(".gradient").style.display = "none";
   });
@@ -766,15 +755,6 @@ function drawGreenSquares(count) {
 
   squareSideLength = containerHeight / Math.ceil(rowCount)
   let columnCount = containerWidth / squareSideLength;
-
-  // container.selectAll("div")
-  //   .data(new Array(count))
-  //   .enter()
-  //   .append("rect")
-  //     .attr("x", (d, i) => )
-  //     .attr("y", (d, i) => )
-  //     .attr("height", squareSideLength)
-  //     .attr("width", squareSideLength);
   let counter = 0;
 
   for(let column = 0; column < columnCount; column++) {

@@ -60,6 +60,8 @@ $white: #ffffff;
   display: block;
 }
 
+
+
 .int-caption {
   @include fs-textSans(3);
   font-size:12px;
@@ -75,8 +77,8 @@ $white: #ffffff;
   @include fs-textSans(3);
   font-weight: 400;
   color: $darkGrey;
-  font-size: 13px;
-  line-height:17px;
+  font-size: 12px;
+  line-height:16px;
   max-width: 620px;
   width: 100%;
   display: block;
@@ -267,9 +269,10 @@ $white: #ffffff;
 
 
 .caption .inline-information {
-    font-size: 12px;
-    line-height: 14px;
-    font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+
+    font-size: 12px !important;
+    line-height: 14px !important;
+    font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif !important;
     color: #767676;
     margin-right: 0.125rem;
     margin-top: -0.1875rem;
@@ -277,6 +280,14 @@ $white: #ffffff;
     height: 0.875rem;
     background-color: #bdbdbd;
   }
+
+  .figcaption.caption {
+    font-size: 12px !important;
+    line-height: 14px !important;
+    font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif !important;
+  }
+
+
 
 .rounded-icon {
     -webkit-border-radius: 62.5rem;

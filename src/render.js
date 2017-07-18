@@ -10,19 +10,13 @@ import xr from 'xr'
 export async function render() {
 
     let data = cleanData(await rp({
-        uri: "https://interactive.guim.co.uk/docsdata-test/1_uvmDf7swVvodXkwYAda7Nqw8igKjr5jyrwclrdaMpI.json",
+        uri: "https://interactive.guim.co.uk/docsdata/1_uvmDf7swVvodXkwYAda7Nqw8igKjr5jyrwclrdaMpI.json",
         json: true
     }));
 
     let mapData = (await rp({uri: "https://interactive.guim.co.uk/docsdata/1Rd4H846JCPOKo8YB5jEEDvryryIA6lr1-9KyQwQSK8U.json", json: true})).sheets.KillingsMap;
 
     let cleanedMapData = await cleanMapData(mapData);
-    // let count = Number(data.header.count);
-    // var count = document.querySelector(".count-header__count__number");
-    // console.log(JSON.stringify(cleanedMapData));
-    // data.header.counterNumbers = [count - 3, count - 2, count - 1, count].map((num) => {
-    //         return (num < 10) ? "0" + num : num;
-    //     });
 
     let headerHTML = Mustache.render(headerTemplate, data.header);
     let moduleHTML = Mustache.render(moduleTemplate, {

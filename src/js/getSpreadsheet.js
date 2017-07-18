@@ -18,13 +18,6 @@ export function getSpreadsheetData() {
             }).sort(function(a, b) {
                 return new Date(b.date) - new Date(a.date);
             });
-
-            //return monthly cumulative data
-            // d.data.sheets.KillingsRecentYears = d.data.sheets.KillingsRecentYears.map(function(killingNumbers, i){
-            //   killingNumbers.hasNumber = killingNumbers.cumulative2017 !==""
-            //   return killingNumbers;
-            // });
-            //return all data
             resolve(d.data.sheets);
         });
     })
