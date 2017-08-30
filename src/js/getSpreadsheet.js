@@ -1,5 +1,9 @@
 import xr from 'xr'
 
+//loading test sheet to check https://interactive.guim.co.uk/docsdata-test/1Rd4H846JCPOKo8YB5jEEDvryryIA6lr1-9KyQwQSK8U.json
+// var spreadsheetUrl = 'https://interactive.guim.co.uk/docsdata-test/1Rd4H846JCPOKo8YB5jEEDvryryIA6lr1-9KyQwQSK8U.json';
+
+//loading published sheet
 var spreadsheetUrl = 'https://interactive.guim.co.uk/docsdata/1Rd4H846JCPOKo8YB5jEEDvryryIA6lr1-9KyQwQSK8U.json';
 
 export function getSpreadsheetData() {
@@ -12,8 +16,10 @@ export function getSpreadsheetData() {
                 killing.isFeatured = killing.highlight === "yes" ? true : false;
                 killing.id = i;
                 var day = new Date(killing.date.split('/')[2] + "/" +  killing.date.split('/')[1] + '/' + killing.date.split('/')[0]);
+                var newDay = new Date(killing.latestUpdate.split('/')[2] + "/" +  killing.latestUpdate.split('/')[1] + '/' + killing.latestUpdate.split('/')[0]);
                 var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
             	  killing.date = day.getDate() + " " + months[day.getMonth()] + " " + day.getFullYear();
+                killing.latestUpdate = newDay.getDate() + " " + months[newDay.getMonth()] + " " + newDay.getFullYear();
                 return killing;
             }).sort(function(a, b) {
                 return new Date(b.date) - new Date(a.date);

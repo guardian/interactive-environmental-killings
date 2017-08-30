@@ -80,34 +80,34 @@ var killingsPast = [{
   victims2016: 110
 }, {
   month: "July",
-  victims2014:64,
+  victims2014:65,
   victims2015: 105,
   victims2016: 124
 }, {
   month: "Aug",
-  victims2014:77,
+  victims2014:78,
   victims2015: 121,
-  victims2016: 140
+  victims2016: 141
 }, {
   month: "Sep",
-  victims2014:92,
+  victims2014:93,
   victims2015: 144,
-  victims2016: 157
+  victims2016: 158
 }, {
   month: "Oct",
-  victims2014:106,
+  victims2014:107,
   victims2015: 163,
-  victims2016: 172
+  victims2016: 173
 }, {
   month: "Nov",
-  victims2014:111,
+  victims2014:112,
   victims2015: 174,
-  victims2016: 188
+  victims2016: 189
 }, {
   month: "Dec",
-  victims2014:116,
+  victims2014:117,
   victims2015: 185,
-  victims2016: 200
+  victims2016: 201
 }]
 var killings2017 = [];
 var killings2016 = [];
@@ -124,6 +124,12 @@ getSpreadsheetData().then(function(data) {
     return ((num < 10) ? "0" + num : num) + " environmental";
   });
   count1.style.visibility = "visible";
+
+  // let latestUpdate = data.Killings2017.filter(function(killing,i){
+  //   return killing.latestUpdate !== ""
+  // }).slice(0,1).map(function(latest,j){return latest.latestUpdate});
+  //
+  // console.log(latestUpdate);
 
   let mostRecentVictims = data.Killings2017.filter(function(killing, i) {
     return killing.highlight == "yes"
@@ -331,7 +337,7 @@ getSpreadsheetData().then(function(data) {
 
   labels2017.append("text")
     .attr("x", 5)
-    .attr("y", 0)
+    .attr("y", -20)
     .attr("class", "stepNumber")
     .attr("text-anchor", "start")
     .style("fill", "#66A998")
@@ -339,7 +345,7 @@ getSpreadsheetData().then(function(data) {
 
   labels2017.append("text")
     .attr("x", 5)
-    .attr("y", 16)
+    .attr("y", -4)
     .attr("class", "stepLabel")
     .attr("text-anchor", "start")
     .style("fill", "#66A998")
@@ -347,7 +353,7 @@ getSpreadsheetData().then(function(data) {
 
   labels2017.append("text")
     .attr("x", 5)
-    .attr("y", 32)
+    .attr("y", 12)
     .attr("class", "stepLabel")
     .attr("text-anchor", "start")
     .style("fill", "#66A998")

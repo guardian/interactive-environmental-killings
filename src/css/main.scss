@@ -502,6 +502,16 @@ figure {
     }
 }
 
+.g-button-featured {
+  @include fs-textSans(3);
+  line-height: 15px;
+
+  svg {
+    margin-left:3px;
+
+  }
+}
+
 .g-button, .g-button-featured {
     a {
         text-decoration: none;
@@ -521,6 +531,7 @@ figure {
         height: 16px;
         width: 16px;
         margin-bottom: -3px;
+
         path {
             fill: white;
         }
@@ -539,6 +550,8 @@ figure {
         margin-left: 0px;
         margin-top:5px;
         display:inline-block;
+        padding-left:10px;
+        padding-right:10px;
 }
 
 .highlight-text {
