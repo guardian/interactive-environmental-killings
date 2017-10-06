@@ -18,8 +18,12 @@ export function getSpreadsheetData() {
                 var day = new Date(killing.date.split('/')[2] + "/" +  killing.date.split('/')[1] + '/' + killing.date.split('/')[0]);
                 var newDay = new Date(killing.latestUpdate.split('/')[2] + "/" +  killing.latestUpdate.split('/')[1] + '/' + killing.latestUpdate.split('/')[0]);
                 var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-            	  killing.date = day.getDate() + " " + months[day.getMonth()] + " " + day.getFullYear();
-                killing.latestUpdate = newDay.getDate() + " " + months[newDay.getMonth()] + " " + newDay.getFullYear();
+            	killing.date = day.getDate() + " " + months[day.getMonth()] + " " + day.getFullYear();
+                
+                var lastUpdate = killing.latestUpdate;
+                var updateDay = new Date(lastUpdate.split('/')[2] + "/" +  lastUpdate.split('/')[1] + '/' + lastUpdate.split('/')[0]);
+
+                killing.latestUpdate = updateDay.getDate() + " " + months[updateDay.getMonth()] + " " + updateDay.getFullYear();
                 return killing;
             }).sort(function(a, b) {
                 return new Date(b.date) - new Date(a.date);

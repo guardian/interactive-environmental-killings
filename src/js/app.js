@@ -125,6 +125,10 @@ getSpreadsheetData().then(function(data) {
   });
   count1.style.visibility = "visible";
 
+  var lastUpdateDate = data["Killings2017"][0].latestUpdate;
+
+  document.querySelector(".last-updated").innerHTML = "Last updated on " + lastUpdateDate;
+
   // let latestUpdate = data.Killings2017.filter(function(killing,i){
   //   return killing.latestUpdate !== ""
   // }).slice(0,1).map(function(latest,j){return latest.latestUpdate});
