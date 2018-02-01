@@ -1,6 +1,6 @@
 import shares from './share'
 
-let shareFn = shares('The defenders: see all the environmental defenders killed this year', 'https://gu.com/p/6jmx8', '');
+let shareFn = shares('The defenders: see all the environmental defenders killed in 2017', 'https://gu.com/p/6jmx8', '');
 
 [].slice.apply(document.querySelectorAll('.interactive-share')).forEach(shareEl => {
     var network = shareEl.getAttribute('data-network');

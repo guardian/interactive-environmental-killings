@@ -127,7 +127,7 @@ getSpreadsheetData().then(function(data) {
 
   var lastUpdateDate = data["Killings2017"][0].latestUpdate;
 
-  document.querySelector(".last-updated").innerHTML = "Last updated on " + lastUpdateDate;
+  // document.querySelector(".last-updated").innerHTML = "Last updated on " + lastUpdateDate;
 
   // let latestUpdate = data.Killings2017.filter(function(killing,i){
   //   return killing.latestUpdate !== ""
@@ -328,7 +328,8 @@ getSpreadsheetData().then(function(data) {
   var translateWidth = document.getElementsByClassName("line2017")[0].getBBox().width;
   var labels2017 = svg.append("g")
     .attr("transform", function(line2017) {
-      return "translate(" + (translateWidth) + "," + (yScale(killingsDataByYear[killingsDataByYear.length - 1].cumulative2017) - 40) + ")"
+      // return "translate(" + (translateWidth + 10) + "," + (yScale(killingsDataByYear[killingsDataByYear.length - 1].cumulative2017) - 10) + ")"
+      return "translate(" + (stepWidth + 10) + "," + (yScale(killingsDataByYear[killingsDataByYear.length - 1].cumulative2017) + 30) + ")"
     });
 
   labels2017.append("rect")
@@ -340,28 +341,28 @@ getSpreadsheetData().then(function(data) {
     .style("fill", "#e6e6e6")
 
   labels2017.append("text")
-    .attr("x", 5)
+    .attr("x", 0)
     .attr("y", -20)
     .attr("class", "stepNumber")
     .attr("text-anchor", "start")
     .style("fill", "#66A998")
-    .text(killingsDataByYear[killingsDataByYear.length - 1].cumulative2017);
+    .text("197");
 
   labels2017.append("text")
-    .attr("x", 5)
-    .attr("y", -4)
+    .attr("x", 0)
+    .attr("y", -8)
     .attr("class", "stepLabel")
     .attr("text-anchor", "start")
     .style("fill", "#66A998")
-    .text("deaths");
-
-  labels2017.append("text")
-    .attr("x", 5)
-    .attr("y", 12)
-    .attr("class", "stepLabel")
-    .attr("text-anchor", "start")
-    .style("fill", "#66A998")
-    .text("in 2017");
+    .text("deaths in 2017");
+  //
+  // labels2017.append("text")
+  //   .attr("x", 0)
+  //   .attr("y", 8)
+  //   .attr("class", "stepLabel")
+  //   .attr("text-anchor", "start")
+  //   .style("fill", "#66A998")
+  //   .text("deaths in 2017");
 
   svg.append("rect")
     .attr("class", "lineEnd")
@@ -376,13 +377,13 @@ getSpreadsheetData().then(function(data) {
   //2016
   var labels2016 = svg.append("g")
     .attr("transform", function(line2016) {
-      return "translate(" + (stepWidth + 10) + "," + (yScale(killings2016[killings2016.length - 1]) - 10) + ")"
+      return "translate(" + (stepWidth + 10) + "," + (yScale(killings2016[killings2016.length - 1]) - 20) + ")"
     })
 
 
   labels2016.append("text")
     .attr("x", 0)
-    .attr("y", 0)
+    .attr("y", 3)
     .attr("class", "stepNumber")
     .attr("text-anchor", "start")
     .style("fill", "#333")
@@ -420,13 +421,13 @@ getSpreadsheetData().then(function(data) {
   //2015
   var labels2015 = svg.append("g")
     .attr("transform", function(line2015) {
-      return "translate(" + (stepWidth + 10) + "," + (yScale(killings2015[killings2015.length - 1]) + 20) + ")"
+      return "translate(" + (stepWidth + 10) + "," + (yScale(killings2015[killings2015.length - 1]) + 21) + ")"
     })
 
 
   labels2015.append("text")
     .attr("x", 0)
-    .attr("y", 0)
+    .attr("y", 3)
     .attr("class", "stepNumber")
     .attr("text-anchor", "start")
     .style("fill", "#9b9b9b")
@@ -450,7 +451,7 @@ getSpreadsheetData().then(function(data) {
 
     labels2014.append("text")
       .attr("x", 0)
-      .attr("y", 0)
+      .attr("y", 3)
       .attr("class", "stepNumber")
       .attr("text-anchor", "start")
       .style("fill", "#c2c2c4")
